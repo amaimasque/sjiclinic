@@ -1,0 +1,21 @@
+
+.icon-view:before { content: '\e800'; } /* '' */
+.icon-pending:before { content: '\e801'; } /* '' */
+.icon-settings:before { content: '\e802'; } /* '' */
+.icon-client:before { content: '\e803'; } /* '' */
+.icon-del:before { content: '\e804'; } /* '' */
+.icon-ok:before { content: '\e805'; } /* '' */
+.icon-password:before { content: '\e806'; } /* '' */
+.icon-search:before { content: '\e807'; } /* '' */
+.icon-stat:before { content: '\e808'; } /* '' */
+.icon-addinfo:before { content: '\e809'; } /* '' */
+.icon-appointment:before { content: '\e80a'; } /* '' */
+.icon-back:before { content: '\f0a8'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
+.icon-amount:before { content: '\f0d6'; } /* '' */
+.icon-user:before { content: '\f0f0'; } /* '' */
+.icon-visit:before { content: '\f0f1'; } /* '' */
+.icon-info:before { content: '\f129'; } /* '' */
+.icon-pet:before { content: '\f1b0'; } /* '' */
+.icon-history:before { content: '\f1da'; } /* '' */
+.icon-service:before { content: '\f21e'; } /* '' */

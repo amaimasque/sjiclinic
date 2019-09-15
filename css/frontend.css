@@ -1,0 +1,245 @@
+#myTopBar{
+  background-color: #4f4f4f;
+}
+#myTopBar a{
+  color: #dcd8d2;
+  text-decoration: none;
+}
+#myTopBar a:hover{
+  background-color: #3b3a3a;
+}
+* {
+  box-sizing: border-box;
+}
+#myNavBar{
+  background-image: url("images/bg_navbar.png")!important;
+  background-size: contain!important;
+}
+#myNavBar .w3-right a{
+  line-height: 50px;
+  margin-right: 30px;
+  font-size: 12pt;
+}
+#myNavBar .w3-right #two, #myNavBar .w3-right #three{
+  width: 150px;
+}
+.navigation a.active{
+  border-bottom: 4px solid #833238;
+}
+#logo_img{
+  margin-left: 20px;
+  max-width: 150px; 
+  min-width: 70px; 
+  height: 100px;
+}
+#logo_text{
+  height: 100px;
+}
+#mySidebar{
+  background-color: #4f4f4f;
+  color: #dcd8d2;
+}
+
+.hvr-underline-reveal {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-reveal:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #833438;
+  height: 4px;
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-reveal:hover:before, .hvr-underline-reveal:focus:before, .hvr-underline-reveal:active:before {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+#contall{
+  margin-top: 150px;
+}
+.w3-bar .w3-button {
+  padding: 16px;
+}
+.page-section#home, #contact{
+  width: 100vw;
+  height: 100vh;
+}
+#home #welcome{
+  font-size: 50pt;
+  margin-top: 100px;
+  color: white;
+}
+#home{
+  padding-bottom: 50px;
+}
+#services{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+#services .w3-row{
+ margin: 0px 200px;
+}
+#services h4{
+  font-weight: bolder;
+  text-align: center;
+}
+#services div.w3-center{
+  margin: 0px 50px; 
+}
+#services img{
+  width: 100%;
+}
+#appointment{
+  background-color: #bbd3b3;
+}
+#appointment img{
+  height: 300px;
+  width: auto;
+}
+#appointment h1{
+  font-weight: 900;
+  color: #833238;
+}
+#appointment #detail{
+  font-size: 16pt;
+}
+#contact {
+  height: 80vh; 
+}
+#contact h1{
+  text-align: right;
+}
+#contactus{
+  font-weight: 900;
+  color: #d3464d;
+}
+@media screen and (max-width: 564px){
+  #home #welcome{
+    margin-top: 70px;
+    font-size: 30pt;
+  }
+}
+@media screen and (max-width: 817px){
+  #appointment h1, #contact h1{
+    font-size: 20pt;
+    text-align: center;
+  }
+  #veterinarian h2{
+    font-size: 18pt;
+  }
+  #veterinarian h4{
+    margin: 0px;
+  }
+  #appointment #detail{
+    font-size: 13pt;
+  }
+}
+@media screen and (max-width: 973px){
+  #veterinarian{
+    padding-top: 30px;
+  }
+  #contact .continfo{
+    padding: 10px;
+  }
+}
+@media screen and (min-width: 974px){
+  #contact .continfo{
+    margin-top: 20px;
+  }
+  #veterinarian{
+    margin-top: 10vh;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 991px){
+  #myNavBar{
+    height: 70px;
+  }
+  #logo_text{
+    height: 70px;
+  }
+  #logo_img{
+    height: 70px;
+  }
+  #contall{
+    margin-top: 30px;
+  }
+}
+
+/* SERVICES layout accdg to screen size */
+@media screen and (max-width: 600px){
+  #home .w3-topbar{
+    font-size: 11pt;
+  }
+  #services .w3-row{
+    margin: 0px 100px;
+  }
+  #services img{
+    width: 100px;
+  }
+  #appointment{
+    padding-top: 40px;
+    text-align: center;
+  }
+  #appointment img{
+    padding: 0px!important;
+    height: 200px;
+    width: auto;
+  }
+  #contact{
+    padding: 0px 50px;
+  }
+}
+@media screen and (min-width: 601px){
+  #services{
+    height: 100vh;
+  }
+}
+@media screen and (max-width: 993px){
+  #logo_img{
+    margin-left: 0px;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 1024px){
+  #services .w3-row{
+   margin: 0px 50px;
+  }
+  #appointment{
+    padding: 0px 50px;
+  }
+  #contact{
+    padding: 0px 50px;  
+  }
+}
+/* customize for larger screens */
+@media screen and (min-width: 1025px){
+  #services .w3-row{
+    height: 200px;
+  }
+  #appointment, #contact{
+    padding: 0px 150px;
+  }
+  #contact h1{
+    margin-bottom: 30px;
+  }
+}
