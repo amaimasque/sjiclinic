@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>User Actions</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
+      <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+      <style type="text/css">
+        #main{
+          padding: 30px;
+        }
+      </style>
+    </head>
+    
+    <body>
+      <!--NAVIGATION-->
+
+      <?php require("navigationAndModals.php")?>
+ 
+      <div class="sidenav" id="sideNav">
+        <ul class="nav flex-column">        
+          <div>
+            <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span><img src="assets/reject.png"></span></a>-->
+          </div>
+          <div>
+            <img src="assets/logo1.png" alt="LOGO" id="logo" data-toggle="tooltip" data-placement="right" title="Vehicle Avenue Registration & Monitoring"/>
+          </div>
+          <span id="systemName">Vehicle Avenue<br>Registration and Monitoring</span>
+          <li class="nav-item hvr-icon-shrink">
+            <a class="nav-link" href="home.php" data-toggle="tooltip" title="Home" data-placement="right">
+              <img src="assets/home.png" class="spanmid hvr-icon">
+              <span class="spanmid spanmid-text">Home</span>
+            </a>
+          </li>          
+          <li class="nav-item hvr-icon-shrink">
+            <a class="nav-link" href="regmgmt.php" data-toggle="tooltip" data-placement="right" title="Registration Control">
+              <img src="assets/register.png" class="spanmid hvr-icon">
+              <span class="spanmid spanmid-text">Registration Control <span class="badge badge-danger"><?php echo $row_cnt = mysqli_num_rows($queryBadge)?></span></span>
+            </a>
+          </li>
+          <li class="nav-item hvr-icon-shrink">
+            <a class="nav-link" href="vehiclemgmt.php" data-toggle="tooltip" data-placement="right" title="Vehicle Information">
+              <img src="assets/vehicle.png" class="spanmid hvr-icon">
+              <span class="spanmid spanmid-text">Vehicle Information</span>
+            </a>
+          </li>
+          <li class="nav-item hvr-icon-shrink adminOnly">
+            <a class="nav-link" href="violationctrl.php" data-toggle="tooltip" data-placement="right" title="Violation Control">
+              <img src="assets/calendar.png" class="spanmid hvr-icon">
+              <span class="spanmid spanmid-text">Coding Control</span>
+            </a>
+          </li>
+          <li class="nav-item hvr-icon-shrink adminOnly">
+            <a class="nav-link" href="accountmgmt.php" data-toggle="tooltip" data-placement="right" title="Accounts Administration">
+              <img src="assets/acctmgmt.png" class="spanmid hvr-icon">
+              <span class="spanmid spanmid-text">Accounts Management</span>
+            </a>
+          </li>
+          <li class="nav-item hvr-icon-shrink" id="active">
+            <a class="nav-link" href="userlog.php" data-toggle="tooltip" data-placement="right" title="User Log">
+              <span class="spanmid">
+                <img src="assets/log.png" class="spanmid hvr-icon">
+                <span class="spanmid spanmid-text">User Log</span>
+              </span>
+              
+            </a>
+          </li>
+          <li class="nav-item hvr-icon-shrink adminOnly">
+            <a class="nav-link" href="report.php" data-toggle="tooltip" data-placement="right" title="Report">
+              <img src="assets/report.png" class="spanmid hvr-icon">
+              <span class="spanmid spanmid-text">Report</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- END OF NAVIGATION-->
+      
+      <div class="modal fade" id="deleteAllModal">
+        <div class="modal-dialog modal-dialog-top">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Confirm</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete all the contents of user log? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+              <a class="btn btn-danger" href="userlog.php?deleteAll=yes">Yes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="sideMain" class="d-flex justify-content-center">
+        <div id="main" class="container">
+          <div class="row" style="margin-bottom: 10px">
+            <div class="col-sm-12 col-md-10">
+              <h3 class="display-5">User Log</h3>
+            </div>
+            <div class="col-sm-12 col-md-2">
+              <a class="btn btn-primary" style="width: 100%" href="print.php?tblname=tbladminlog&user=<?php echo $_SESSION['user']['Username']?>" target="_blank">
+                PRINT
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="table-responsive">         
+              <table class="table table-bordered display dataTable" id="data_table" style='width: 100%'>
+                <thead>
+                  <tr>
+                    <th class="tableheaders">ID</th>
+                    <th class="tableheaders">Date</th>
+                    <th class="tableheaders">Username</th>
+                    <th class="tableheaders">Action</th> 
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php while($row=mysqli_fetch_array($query1)){?>
+                    <tr>
+                      <td><?php echo $row['ID'];?></td>
+                      <td><?php echo $row['Date'];?></td>
+                      <td><?php echo $row['Username'];?></td> 
+                      <td><?php echo $row['Action'];?> </td>
+                    </tr>                 
+                  <?php }?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript"> 
+        $(document).ready(function(){
+          $.fn.DataTable.ext.pager.numbers_length = 5;
+          $.fn.DataTable.ext.pager.simple_numbers = function(page, pages) {
+              return ["previous", _numbers(page, pages), "next"];
+          };
+          $('#data_table').DataTable( {
+            "pagingType": "full_numbers"
+          });
+        });
+
+        function _numbers(page, pages) {
+          var
+              numbers = [],
+              buttons = 5, // added here the number of buttons
+              half = Math.floor(buttons / 2);
+
+          if(pages <= buttons) {
+              numbers = _range(0, pages);
+          } else if(page <= half) {
+              numbers = _range(0, buttons - 2);
+
+              numbers.push("ellipsis");
+              numbers.push(pages - 1);
+          } else if(page >= pages - 1 - half) {
+              numbers = _range(pages - (buttons - 2), pages);
+
+              numbers.splice(0, 0, "ellipsis");
+              numbers.splice(0, 0, 0);
+          } else {
+              numbers.push(page); // changed this from _range(page - 1, page + 2);
+              numbers.push("ellipsis");
+              numbers.push(pages - 1);
+              numbers.splice(0, 0, "ellipsis");
+              numbers.splice(0, 0, 0);
+          }
+
+          numbers.DT_el = "span";
+
+          return numbers;
+      }
+      </script>
+
+
+      <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    </body>
+</html>

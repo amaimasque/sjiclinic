@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to SJI Pet Turf Animal Clinic</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/logo_img.png">
+  <link rel="stylesheet" href="css/w3.css">
+  <link rel="stylesheet" href="css/sjiclinic.css">
+  <link rel="stylesheet" href="css/frontend.css">
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif}
+    body{
+      background-image: url("images/bg.jpg")!important;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    #myNavBar{
+      background-image: url("images/bg_navbar.png")!important;
+      background-size: contain!important;
+    }
+/*@keyframes float_down{
+  0% {background: green};
+  50% {background: red}
+  
+}
+#cont_box_services{
+  animation: float_down;
+  animation-duration: 10s;
+}*/
+
+
+
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-hide-medium w3-hide-small" id="myTopBar"> 
+    <a href="login.php" class="w3-bar-item w3-right"><i class="demo-icon icon-password"></i> Login as Admin</a>
+  </div>
+  <div class="w3-bar transbox" id="myNavBar">
+    <img src="images/logo_img.png" id="logo_img" class="w3-bar-item">
+    <img src="images/logo_text.png" id="logo_text" class="w3-bar-item">
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-medium w3-hide-small navigation" id="navigation">
+      <a href="#home" class="w3-bar-item w3-button" id="one">HOME</a>
+      <a href="#services" class="w3-bar-item w3-button" id="two" style="width: 120px">SERVICES</a>
+      <a href="#contact" class="w3-bar-item w3-button" id="three" style="width: 110px">CONTACT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large" id="burgermenu" onclick="w3_open()">
+      <i class="demo-icon icon-menu"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-8">Close ×</a>
+  <a href="#home" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+  <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button">Services</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-border-bottom">Contact</a>
+  <div>
+    <a href="login.php" onclick="w3_close()" class="w3-bar-item w3-button">Login as Admin</a>
+  </div>
+</nav>
+
+  <div>
+    <div class="page-section w3-container w3-cell-row" id="home">
+      <div class="w3-large w3-cell w3-cell-middle">
+        <div class="w3-right-align">
+          <div class="w3-wide" id="welcome" style="color: white;">WELCOME!</div>
+          <div class="w3-wide" style="margin-left: 100px; padding: 20px; margin-right: 10px; color: white; background: #833238; ">
+            At SJI Pet Turf Animal Clinic, we deliver excellent services with love and care for our patients.<br>
+            We offer services such as consultation, confinement, pet supplies, groominh, surgery and laboratory.<br>
+            We are happy to serve our clients in Lingayen as we establlish our first clinic here.<br>
+            For inquiries, please head to the contact panel.
+          </div>
+        </div> 
+      </div>
+    </div>
+
+  <!-- Team Section -->
+    <div class="w3-container page-section w3-cell w3-cell-middle" style="background-color: white; width: 100vw;" id="services">
+      <h3 class="w3-center">WE OFFER EXCELLENT SERVICES ON</h3>
+      <div class="w3-row">
+        <div class="w3-col l4 m4 s12">
+          <div style="padding-top: 40px; padding-bottom: 30px; background-color: #729380" id="cont_box_services">
+            <div class="w3-container w3-center">
+              <img src="images/icon_consultation.png" alt="Consultation">
+            </div>
+            <h4>CONSULTATION</h4>
+          </div>
+        </div>
+        <div class="w3-col l4 m4 s12">
+          <div style="padding-top: 40px; padding-bottom: 30px; background-color: #bbd3b3" id="cont_box_services">
+            <div class="w3-container w3-center ">
+              <img src="images/icon_confinement.png" alt="Confinement">
+            </div>
+            <h4>CONFINEMENT</h4>
+          </div>
+        </div>
+        <div class="w3-col l4 m4 s12">
+          <div style="padding-top: 40px; padding-bottom: 30px; background-color: #fdeef1" id="cont_box_services">
+            <div class="w3-container w3-center">
+              <img src="images/icon_petsupplies.png" alt="Pet Supplies">
+            </div>
+            <h4>PET SUPPLIES</h4>
+          </div>
+        </div>
+      </div>
+      <div class="w3-row">
+        <div class="w3-col l4 m4 s12">
+          <div style="padding-top: 40px; padding-bottom: 30px; background-color: #fef9f5" id="cont_box_services">
+            <div class="w3-container w3-center">
+              <img src="images/icon_grooming.png" alt="Grooming">
+            </div>
+            <h4>GROOMING</h4>
+          </div>
+        </div>
+        <div class="w3-col l4 m4 s12">
+          <div style="padding-top: 40px; padding-bottom: 30px; background-color: #d3464e" id="cont_box_services">
+            <div class="w3-container w3-center ">
+              <img src="images/icon_surgery.png" alt="Surgery">
+            </div>
+            <h4>SURGERY</h4>
+          </div>
+        </div>
+        <div class="w3-col l4 m4 s12">
+          <div style="padding-top: 40px; padding-bottom: 30px; background-color: #833439" id="cont_box_services">
+            <div class="w3-container w3-center">
+              <img src="images/icon_lab.png" alt="Laboratory">
+            </div>
+            <h4>LABORATORY</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-container" id="appointment">
+      <div class="w3-cell-row">
+        <div class="w3-cell w3-mobile w3-cell-middle">
+          <h1>WANT TO AVAIL OUR SERVICES?</h1>
+          <span id="detail">
+            Please click <i>Enter Appointment</i> above or just <a href="appointment.php">click here</a> and drop by our clinic!
+          </span>
+        </div>
+        <div class="w3-cell w3-mobile" style="padding-top: 50px;">
+          <img src="images/clipart_services.png">
+        </div>
+      </div>
+    </div>
+
+  <!-- Contact Section -->
+    <div class="w3-container w3-white page-section w3-cell w3-cell-middle" id="contact">
+      <div>
+        <h1 id="contactus">CONTACT US OR VISIT OUR CLINIC</h1>
+        <div class="w3-row w3-cell-row">
+          <div class="w3-col l4 m12 s12 w3-cell">
+            <div class="continfo">
+              <div class="w3-cell-row">
+                <div class="w3-container w3-cell w3-cell-top" style="width: 40px;">
+                  <img src="images/icon_telephone.png" alt="Contact Number">  
+                </div>
+                <div class="w3-container w3-cell w3-left-align">
+                  <span class="w3-large">0949-8421-273</span>
+                </div>      
+              </div>
+            </div>
+          </div>
+          <div class="w3-col l4 m12 s12 w3-cell">
+            <div class="continfo">
+              <div class="w3-cell-row">
+                <div class="w3-container w3-cell w3-cell-top" style="width: 40px;">
+                  <img src="images/icon_location.png" alt="Address">  
+                </div>
+                <div class="w3-container w3-cell w3-left-align">
+                  <span class="w3-large">Artacho St., Poblacion, Lingayen, Pangasinan</span>
+                </div>      
+              </div>
+            </div>
+          </div>
+          <div class="w3-col l4 m12 s12 w3-cell">
+            <div class="continfo">
+              <div class="w3-cell-row">
+                <div class="w3-container w3-cell w3-cell-top" style="width: 40px;">
+                  <img src="images/icon_clock.png" alt="Office Hours">  
+                </div>
+                <div class="w3-container w3-cell w3-cell-top">
+                  <span class="w3-large">Open Mondays to Saturdays, 8:00 AM - 6:00 PM</span>
+                </div>      
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w3-container w3-center" id="veterinarian">
+          <h2 style="font-weight: bold; color: #833438">Dr. Shanon Joy A. Ibañes, DVM</h2>
+          <h4 style="font-weight: bolder">Veterinarian</h4>
+        </div>
+      </div>
+    </div> 
+
+  </div>
+
+<!-- Footer -->
+  <footer class="w3-center w3-padding-16" style="background-color: #e4e0da">
+    <p>SJI Pet Turf Animal Clinic &copy; 2019</p>
+  </footer>
+
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script>
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+
+    $(document).ready(function() {
+        $('a[href*=#]').bind('click', function(e) {
+            e.preventDefault(); // prevent hard jump, the default behavior
+
+            var target = $(this).attr("href"); // Set the target as variable
+
+            // perform animated scrolling by getting top-position of target-element and set it as scroll target
+            $('html, body').stop().animate({
+                scrollTop: $(target).offset().top
+            }, 600, function() {
+                location.hash = target; //attach the hash (#jumptarget) to the pageurl
+            });
+
+            return false;
+        });
+    });
+
+    $(window).scroll(function() {
+        var scrollDistance = $(window).scrollTop();
+
+        // Assign active class to nav links while scolling
+        $('.page-section').each(function(i) {
+            if ($(this).position().top <= scrollDistance+100) {
+                $('.navigation a.active').removeClass('active');
+                $('.navigation a').eq(i).addClass('active');
+            }
+        });
+    }).scroll();
+  </script>
+</body>
+</html>
