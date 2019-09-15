@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#form_diagnosis .w3-col{
+			padding: 10px
+		}
+	</style>
+</head>
+<body>
+
+	<div class="w3-modal" id="modal_consultation_diagnosis">
+		<div class="w3-modal-content">
+			<header class="w3-container" style="background-color: #729380"> 
+		      <span onclick="document.getElementById('modal_consultation_diagnosis').style.display='none'" 
+		      class="w3-button w3-display-topright">&times;</span>
+		      <h4>Diagnostic Test</h4>
+		    </header>
+		    <div class="w3-container" style="padding: 20px">
+		    	<form action="" method="POST" id="form_diagnosis">
+		    		<div class="w3-row">
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Blood Exam</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_blood" id="consultation_diagnosis_blood">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Urine Exam</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_urine" id="consultation_diagnosis_urine">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Distemper Test</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_distemper" id="consultation_diagnosis_distemper">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Parvo Test</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_pvtest" id="consultation_diagnosis_pvtest">
+		    			</div>
+		    		</div>
+		    		<div class="w3-row">
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Fecalysis</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_fecalysis" id="consultation_diagnosis_fecalysis">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Skin Scraping</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_scraping" id="consultation_diagnosis_scraping">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Ehrlichia Test</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_ehtest" id="consultation_diagnosis_ehtest">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>HW Test</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_hwtest" id="consultation_diagnosis_hwtest">
+		    			</div>
+		    		</div>
+		    		<div class="w3-row">
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Ear Swabbing</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_earswab" id="consultation_diagnosis_earswab">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Vaginal Smear</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_vagsmear" id="consultation_diagnosis_vagsmear">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>Ultrasound</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_ultras" id="consultation_diagnosis_ultras">
+		    			</div>
+		    			<div class="w3-col l3 m6 s6 w3-left-align">
+		    				<label>X-ray</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_xray" id="consultation_diagnosis_xray">
+		    			</div>
+		    		</div>
+		    		<div class="w3-row">
+		    			<div class="w3-col l12 m12 s12 w3-left-align">
+		    				<label>Other Test/s</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_otest" id="consultation_diagnosis_otest">
+		    			</div>
+		    		</div>
+		    	</form>
+		    </div>
+		    <div class="w3-container w3-center">
+		    	<div class="w3-bar">
+			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_consultation_diagnosis').style.display='none'">CANCEL</button>
+			    	<a class="w3-button w3-border">SAVE</a>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="w3-modal" id="modal_consultation_prognosis">
+		<div class="w3-modal-content">
+			<header class="w3-container" style="background-color: #729380"> 
+		      <span onclick="document.getElementById('modal_consultation_prognosis').style.display='none'" 
+		      class="w3-button w3-display-topright">&times;</span>
+		      <h4>Prognosis</h4>
+		    </header>
+		    <div class="w3-container" style="padding: 20px">
+		    	<form action="" method="POST" id="form_diagnosis">
+		    		<div class="w3-row">
+		    			<div class="w3-col l12 m12 s12 w3-left-align">
+		    				<label>Assessment/DX/Prognosis</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_blood" id="consultation_diagnosis_blood">
+		    			</div>
+		    		</div>
+		    		<div class="w3-row">
+		    			<div class="w3-col l6 m6 s12 w3-center">
+		    				<label>Treatment</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_urine" id="consultation_diagnosis_urine">
+		    				<button class="w3-button"><i class="fa fa-plus"></i></button>
+		    			</div>
+		    			<div class="w3-col l6 m6 s12 w3-center">
+		    				<label>Prescribed Medication</label>
+		    				<input class="w3-input" type="text" name="consultation_diagnosis_urine" id="consultation_diagnosis_urine">
+		    				<button class="w3-button"><i class="fa fa-plus"></i></button>
+		    			</div>
+		    		</div>
+		    	</form>
+		    </div>
+		    <div class="w3-container w3-center">
+		    	<div class="w3-bar">
+			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_consultation_prognosis').style.display='none'">CANCEL</button>
+			    	<a class="w3-button w3-border">SAVE</a>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="w3-modal" id="modal_cancel">
+		<div class="w3-modal-content" style="width: 30%">
+			<header class="w3-container" style="background-color: #729380"> 
+		      <span onclick="document.getElementById('modal_cancel').style.display='none'" 
+		      class="w3-button w3-display-topright">&times;</span>
+		      <h4>Confirm</h4>
+		    </header>
+		    <div class="w3-container">
+		    	<p>Appointment is not successfully submitted. Are you sure you want to cancel? All details will be disregared.</p>
+		    </div>
+		    <div class="w3-container">
+		    	<div class="w3-cell-row">
+			    	<div class="w3-cell">
+			    		<a href="index.html"><button class="w3-button w3-border" style="width: 100%">Yes</button></a>
+			    	</div>
+			    	<div class="w3-cell">
+			    		<button class="w3-button w3-border" style="width: 100%" onclick="document.getElementById('modal_cancel').style.display='none'">No</button>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="w3-card w3-left-align" id="contconsult">
+				<div class="w3-container w3-green">
+					<h3><i class="demo-icon icon-service"></i> Consultation</h3>
+				</div>
+				<div class="w3-container" style="padding: 20px">
+					<div class="w3-cell-row">
+						<div class="w3-cell w3-col l3 m6 s12 multiplecol">
+							<label>Attitude</label>
+							<select class="w3-select" name="attitude">
+								<option value="nrm">Normal</option>
+								<option value="abn">Abnormal</option>
+								<option value="na" selected>Not Applicable</option>
+							</select>
+						</div>
+						<div class="w3-cell w3-col l3 m6 s12 multiplecol">
+							<label>Drinking</label>
+							<select class="w3-select" name="drinking">
+								<option value="nrm">Normal</option>
+								<option value="abn">Abnormal</option>
+								<option value="na" selected>Not Applicable</option>
+							</select>
+						</div>
+						<div class="w3-cell w3-col l3 m6 s12 multiplecol">
+							<label>Bowels</label>
+							<select class="w3-select" name="bowels">
+								<option value="nrm">Normal</option>
+								<option value="abn">Abnormal</option>
+								<option value="na" selected>Not Applicable</option>
+							</select>
+						</div>
+						<div class="w3-cell w3-col l3 m6 s12">
+							<label>Coughing</label>
+							<select class="w3-select" name="coughing">
+								<option value="nrm">Normal</option>
+								<option value="abn">Abnormal</option>
+								<option value="na" selected>Not Applicable</option>
+							</select>
+						</div>
+					</div>
+					<div class="w3-cell-row">
+						<div class="w3-cell w3-col l3 m6 s12 multiplecol">
+							<label>Urination</label>
+							<select class="w3-select" name="urination">
+								<option value="nrm">Normal</option>
+								<option value="abn">Abnormal</option>
+								<option value="na" selected>Not Applicable</option>
+							</select>
+						</div>
+						<div class="w3-cell w3-col l3 m6 s12 multiplecol">
+							<label>Appetite</label>
+							<select class="w3-select" name="appetite">
+								<option value="nrm">Normal</option>
+								<option value="abn">Abnormal</option>
+								<option value="na" selected>Not Applicable</option>
+							</select>
+						</div>
+						<div class="w3-cell w3-col l3 m6 s12 multiplecol">
+							<label>Vomiting</label>
+							<select class="w3-select" name="vomiting">
+								<option value="yes">Yes</option>
+								<option value="no" selected>No</option>
+								<option value="occ">Occupationally</option>
+							</select>
+						</div>
+						<div class="w3-cell w3-col l3 m6 s12">
+							<label>Sneezing</label>
+							<select class="w3-select" name="sneezing">
+								<option value="yes">Yes</option>
+								<option value="no" selected>No</option>
+								<option value="occ">Occupationally</option>
+							</select>
+						</div>
+					</div>
+					<div class="w3-cell-row">
+						<div class="w3-cell">
+							<label>Notes</label>
+							<input class="w3-input" type="textbox" name="cnotes">
+						</div>
+					</div>
+				</div>		
+			</div>
+		<script type="text/javascript">
+
+		</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title></title>
+
+</head>
+
+<body>
+
+	<div class="w3-cell-row" id="contnewinfo">
+
+		<div class="w3-cell w3-col l6 m12" id="clientinfo">
+
+			<div class="w3-card">
+
+				<div class="w3-container w3-green">
+
+					<h3><i class="demo-icon icon-client"></i> Client Information</h3>
+
+				</div>
+
+				<div class="w3-container" style="padding: 20px;">
+
+					<div class="w3-cell-row">
+
+						<div class="w3-cell multiplecol">
+
+							<label>First Name</label>
+
+							<input class="w3-input" type="text" name="client_fname" id="client_fname">	
+
+						</div>
+
+						<div class="w3-cell multiplecol" style="width: 50px;">
+
+							<label>M.I.</label>
+
+							<input class="w3-input" type="text" name="client_mname" id="client_mname">
+
+						</div>
+
+						<div class="w3-cell">
+
+							<label>Last Name</label>
+
+							<input class="w3-input" type="text" name="client_lname" id="client_lname">		
+
+						</div>
+
+					</div>
+
+					<div class="w3-cell-row">
+
+						<div class="w3-cell">
+
+							<label>Address</label>
+
+							<input class="w3-input" type="text" name="client_address" id="client_address">	
+
+						</div>
+
+					</div>
+
+					<div class="w3-cell-row">
+
+						<div class="w3-cell">
+
+							<label>Contact Number</label>
+
+							<input class="w3-input" type="text" name="client_contact" id="client_contact">	
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>		
+
+		</div>
+
+		<div class="w3-cell w3-col l6 m12" style="text-align: left">
+
+			<div class="w3-card">
+
+				<div class="w3-container w3-green">
+
+					<h3><i class="demo-icon icon-pet"></i> Patient Information</h3>
+
+				</div>
+
+				<div class="w3-container" style="padding: 20px;">
+
+					<div class="w3-cell-row">
+
+						<div class="w3-cell w3-col l4 s12 multiplecol">
+
+							<label>Pet Name</label>
+
+							<input class="w3-input" type="text" name="pet_name" id="pet_name">	
+
+						</div>
+
+						<div class="w3-cell w3-col l4 s6 multiplecol">
+
+							<label>Birthdate</label>
+
+							<input class="w3-input" type="date" name="pet_bdate" id="pet_bdate">
+
+						</div>
+
+						<div class="w3-cell w3-col l4 s6" id="div_pet_sex">
+
+							<label>Sex</label>
+
+							<select class="w3-select" name="pet_sex" id="pet_sex">
+
+								<option value="mc">Mc</option>
+
+								<option value="fs">Fs</option>
+
+								<option value="male">Male</option>
+
+								<option value="female">Female</option>
+
+							</select>		
+
+						</div>
+
+					</div>
+
+					<div class="w3-cell-row">
+
+						<div class="w3-cell multiplecol">
+
+							<label>Species</label>
+
+							<input class="w3-input" type="text" name="pet_species" id="pet_species">	
+
+						</div>
+
+						<div class="w3-cell">
+
+							<label>Breed</label>
+
+							<input class="w3-input" type="text" name="pet_breed" id="pet_breed">
+
+						</div>
+
+					</div>
+
+					<div class="w3-cell-row">
+
+						<div class="w3-cell multiplecol">
+
+							<label>Color Markings</label>
+
+							<input class="w3-input" type="text" name="pet_color_markings" id="pet_color_markings">	
+
+						</div>
+
+						<div class="w3-cell">
+
+							<label>Previous Veterinarian</label>
+
+							<input class="w3-input" type="text" name="pet_vet" id="pet_vet">
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>	
+
+		</div>
+
+	</div>
+
+	<div class="w3-card w3-left-align" id="contoldinfo">
+
+		<div class="w3-container w3-green">
+
+			<h3><i class="demo-icon icon-client"></i> General Information</h3>
+
+		</div>
+
+		<div class="w3-container" style="padding: 20px">
+
+			<div class="w3-row">
+
+				<div class="w3-col l7 m12 s12 multiplecol">
+
+					<label>Client Name</label>
+
+					<select class="w3-select" name="oclientname" id="oclientname" onchange="$('#opetname').prop('disabled', false);">
+
+						<option value="0" selected disabled>Choose client...</option>
+
+					</select>
+
+				</div>
+
+				<div class="w3-col l5 m12 s12">
+
+					<label>Pet Name</label>
+
+					<select class="w3-select" name="opetname" id="opetname" disabled>
+
+						<option value="0" selected disabled>Choose pet...</option>
+
+						<option value="add">Add New</option>
+
+					</select>
+
+				</div>
+
+			</div>	
+
+		</div>		
+
+	</div>
+
+	<div class="w3-card w3-left-align" id="cardAddNewPet" style="display: none;">
+
+		<div class="w3-container w3-green">
+
+			<h3><i class="demo-icon icon-pet"></i> Patient Information</h3>
+
+		</div>
+
+		<div class="w3-container" style="padding: 20px;">
+
+			<input type="text" name="owner_id" id="owner_id" style="display: none">
+
+			<div class="w3-cell-row">
+
+				<div class="w3-cell w3-col l4 s12 multiplecol">
+
+					<label>Pet Name</label>
+
+					<input class="w3-input" type="text" name="pet_name" id="pet_name">	
+
+				</div>
+
+				<div class="w3-cell w3-col l4 s6 multiplecol">
+
+					<label>Birthdate</label>
+
+					<input class="w3-input" type="date" name="pet_bdate" id="pet_bdate">
+
+				</div>
+
+				<div class="w3-cell w3-col l4 s6">
+
+					<label>Sex</label>
+
+					<select class="w3-select" name="pet_sex" id="pet_sex">
+
+						<option value="mc">Mc</option>
+
+						<option value="fs">Fs</option>
+
+						<option value="mi">Male</option>
+
+						<option value="fi">Female</option>
+
+					</select>		
+
+				</div>
+
+			</div>
+
+			<div class="w3-cell-row">
+
+				<div class="w3-cell multiplecol">
+
+					<label>Species</label>
+
+					<input class="w3-input" type="text" name="pet_species" id="pet_species">	
+
+				</div>
+
+				<div class="w3-cell">
+
+					<label>Breed</label>
+
+					<input class="w3-input" type="text" name="pet_breed" id="pet_breed">
+
+				</div>
+
+			</div>
+
+			<div class="w3-cell-row">
+
+				<div class="w3-cell multiplecol">
+
+					<label>Color Markings</label>
+
+					<input class="w3-input" type="text" name="pet_color_markings" id="pet_color_markings">	
+
+				</div>
+
+				<div class="w3-cell">
+
+					<label>Previous Veterinarian</label>
+
+					<input class="w3-input" type="text" name="pet_vet" id="pet_vet">
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>	
+
+	<script type="text/javascript">
+
+	</script>
+
+</body>
+
+</html>
