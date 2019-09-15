@@ -1,0 +1,129 @@
+body{
+
+  			background: #BBD3B3;
+
+  		}
+
+  		body,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif}
+
+  		#myTopBar, .w3-top{
+
+		  background-color: #4f4f4f;
+
+		}
+
+		#myTopBar a{
+
+		  color: #dcd8d2;
+
+		  text-decoration: none;
+
+		}
+
+		#myTopBar a:hover, #myTopBar a.active{
+
+		  background-color: #3b3a3a;
+
+		}
+
+		#myTopBar a.active{
+
+		  pointer-events: none;
+
+  		  cursor: default;
+
+		}
+
+		#content{
+
+			padding: 100px 20%;
+
+		}
+
+		#content .w3-card{
+
+			background: white;
+
+		}
+
+		#clientinfo{
+
+			text-align: left;
+
+			padding-right: 10px; 
+
+		}
+
+		#formExamination .w3-cell.multiplecol{
+
+			padding-right: 10px;
+
+		}
+
+		#formExamination .w3-card{
+
+			margin-bottom: 10px;
+
+		}
+
+		.contstatus{
+
+			margin-bottom: 20px;
+
+		}
+
+		#contappointment, #contsubmission{
+
+			display: none;
+
+		}
+
+		.w3-container.w3-green{
+
+			background-color: #833439!important;
+
+		}
+
+		@media screen and (min-width: 1104px){
+
+			form{
+
+				text-align: center;
+
+			}
+
+			.contstatus{
+
+				width: 75%;
+
+				display: inline-block;
+
+			}
+
+			.contstatus .w3-mobile{
+
+				width: 90%;
+
+			}
+
+		}
+
+		@media screen and (max-width: 983px){
+
+			#clientinfo{
+
+				padding-right: 0px!important;
+
+			}
+
+		}
+
+		@media screen and (max-width: 1166px){
+
+			#content{
+
+				padding: 50px 50px!important;
+
+			}
+
+		}	
