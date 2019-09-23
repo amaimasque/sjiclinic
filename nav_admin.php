@@ -6,77 +6,7 @@
 
 <head>
 
-	<style type="text/css">
-
-body{
-
-	font-family: "Segoe UI", sans-serif
-
-}
-
-.w3-top .w3-bar{
-
-	z-index: 3;
-
-	height: 55px;
-
-}
-
-#mySidebar{
-
-	background-color: #4f4f4f;
-
-	z-index: 1;
-
-	font-weight: 200;
-
-	color: white;
-
-}
-
-.logo_text{
-
-	font-size: 18pt;
-
-	font-weight: 900; 
-
-}
-
-.button_active{
-
-	color:#000!important;
-
-	background-color:#ccc!important;
-
-}
-
-@media screen and (max-width: 994px){
-
-	#mySidebar a:hover{
-
-		background-color: none;
-
-	}
-
-}
-
-@media screen and (max-width: 538px){
-
-	.logo_text{
-
-		font-size: 14pt;
-
-	}
-
-	#contlogo_text{
-
-		margin-top: 3px;
-
-	}
-
-}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/global.css">
 
 </head>
 
@@ -156,7 +86,7 @@ body{
 
 			    		<label>Username</label>
 
-			    		<input type="text" class="w3-input" name="">
+			    		<input type="text" class="w3-input" name="new_username">
 
 			    	</div>
 
@@ -164,7 +94,7 @@ body{
 
 			    		<label>Password</label>
 
-			    		<input type="text" class="w3-input" name="">
+			    		<input type="assword" class="w3-input" name="new_password">
 
 			    	</div>
 
@@ -204,13 +134,13 @@ body{
 
 			<div class="w3-bar-item"><img src="images/logo_img.png" style="height: 30px"></div>
 
-			<div class="w3-bar-item" id="contlogo_text">
+			<a href="sjihome.php" class="w3-bar-item" id="contlogo_text" style="text-decoration: none;">
 
 				<span class="logo_text" style="color: #d3464d">SJI PET TURF </span>
 
 				<span class="logo_text" style="color: black">ANIMAL CLINIC</span>
 
-			</div>
+			</a>
 
 			<div class="w3-right w3-bar-item w3-hide-medium w3-hide-small">
 
@@ -272,8 +202,6 @@ body{
 
 		var mySidebar = document.getElementById("mySidebar");
 
-
-
 		function w3_open() {
 
 		  if (mySidebar.style.display === 'block') {
@@ -293,7 +221,6 @@ body{
 		    mySidebar.style.display = "none";
 
 		}
-
 
 
 		function showDropdown(){

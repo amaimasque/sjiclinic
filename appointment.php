@@ -346,10 +346,13 @@
 					    $("#opetname").change(function(){
 					    	var opetname = $(this).val();
 
-					    	if(opetname=='add'){
-					    		document.getElementById('cardAddNewPet').style.display='block'
-					    		document.getElementById('owner_id').value = $("#oclientname").val();
+					    	if(opetname == 'add'){
+					    		document.getElementById('cardAddNewPet').style.display='block';
+					    	}else{
+					    		document.getElementById('cardAddNewPet').style.display='none';
+					    		
 					    	}
+					    	document.getElementById('owner_id').value = $("#oclientname").val();
 					    });
 
 					});

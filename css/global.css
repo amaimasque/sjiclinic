@@ -1,0 +1,95 @@
+
+body{
+
+	font-family: "Segoe UI", sans-serif
+
+}
+
+a{
+
+	text-decoration: none;
+
+}
+
+.w3-top .w3-bar{
+
+	z-index: 3;
+
+	height: 55px;
+
+}
+
+#mySidebar{
+
+	background-color: #4f4f4f;
+
+	z-index: 1;
+
+	font-weight: 200;
+
+	color: white;
+
+}
+
+.logo_text{
+
+	font-size: 18pt;
+
+	font-weight: 900; 
+
+}
+
+.button_active{
+
+	color:#000!important;
+
+	background-color:#ccc!important;
+
+}
+
+@media screen and (max-width: 994px){
+
+	#mySidebar a:hover{
+
+		background-color: none;
+
+	}
+
+}
+
+@media screen and (max-width: 538px){
+
+	.logo_text{
+
+		font-size: 14pt;
+
+	}
+
+	#contlogo_text{
+
+		margin-top: 3px;
+
+	}
+
+}
+
+
+/*custom colors*/
+
+.sji-dark-green-bg {
+
+	background: #71927F;
+
+}
+
+.sji-dark-red-bg {
+
+	background: #833438;
+
+}
+
+.sji-dark-red-text {
+
+	color: #833438;
+
+}

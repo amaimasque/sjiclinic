@@ -1,0 +1,113 @@
+
+
+#cont_all{
+
+	width: 100vw;
+
+	height: 100vh;
+
+	padding-top: 10%
+
+}
+
+#divnumexams{
+
+	font-size: 20pt; 
+
+	color: #D3464D;
+
+}
+
+#cont_examinations{
+
+	padding: 0px 15%;
+
+	padding-bottom: 20px;	
+
+}
+
+.div_examination{
+
+	margin: 20px 0px;	
+
+}
+
+.div-examination:last-child{
+
+	margin-bottom: 20px;
+
+}
+
+.div_examination > a{
+
+	padding: 20px 5%;
+
+	display: block;
+
+}
+
+.div_examination_new{
+
+	background: #BBD2B3;
+
+	font-weight: 700;
+
+}
+
+.div_examination_read{
+
+	
+
+	background: #FEF9F5;
+
+}
+
+#cont_pending_id{
+
+	width: 33%;
+
+	font-size: 20pt;
+
+	font-weight: bold;
+
+}
+
+.cont_pending_details .w3-col{
+
+	width: 30%
+
+}
+
+@media screen and (max-width: 600px){
+
+	#cont_all{
+
+		padding-top: 70px
+
+	}
+
+	#cont_examinations{
+
+		padding: 0px;
+
+	}
+
+	#cont_pending_id{
+
+		width: 25%;
+
+	}
+
+
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 993px){
+
+	.cont_pending_details .w3-col{
+
+		width: 40%
+
+	}
+
+}
