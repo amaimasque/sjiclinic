@@ -7,7 +7,7 @@ $filter = $_POST['filter'];
 
 if ($texttosearch == "" && $filter == "") {
 
-	$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE tbl_service.service_amt IS NULL";
+	$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE tbl_service.service_amt IS NULL ORDER BY tbl_service.service_apt_date DESC";
 
 }else if ($texttosearch != "" && $filter == ""){
 	
@@ -43,7 +43,7 @@ while( $row = mysqli_fetch_array($result) ){
 
     $date_entered = $row['service_apt_date'];
 
-    $state = $row['service_del'];
+    $state = $row['service_read'];
 
     $exam_arr[] = array("service_id" => $service_id, "service_type" => $service_type, "client_fullname" => $client_fullname, "pet_name" => $pet_name, "date_entered" => $date_entered, "state" => $state);
 }

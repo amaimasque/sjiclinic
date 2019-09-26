@@ -179,9 +179,7 @@
 <body>
 
 	<?php
-
 		require("nav_admin.php");
-
 	?>
 
 	<!-- MODAL FOR VACCINE ADDITIONAL INFO -->
@@ -751,7 +749,8 @@
 			?>
 				var edit_flag = 0;
 				document.getElementById("cont_"+form+"_buttons").style.display="block";
-				//enableForm(); //ERROR
+				var formToLoad = "forms/"+form+".html";
+				document.getElementById("cont_details").setAttribute("w3-include-html",formToLoad);
 			<?php
 				}else{
 			?>
@@ -763,18 +762,110 @@
 			?>
 
 			
-			var formToLoad = "forms/"+form+".html";
-			document.getElementById("cont_details").setAttribute("w3-include-html",formToLoad);
 
 			w3.includeHTML(function(){
 
 				document.getElementById("contoldinfo").style.display="none";
-
 				$("#cont_info input, #cont_details input").attr("disabled", true);
 				$("#cont_info select").attr("disabled", true);
 				document.getElementsByTagName("select").disabled = true;
 				$(".cont_buttons input").attr("disabled", false);
-				<?php require("viewpendingdetails.php"); ?>
+
+				$("#cont_details select").attr("disabled", true);
+				var service_id = "<?php echo $_GET['id']; ?>";
+				var service_type = "<?php echo $_GET['at']; ?>";
+
+				$.ajax({
+					url: 'viewpendingdetails.php',
+					type: 'post',
+					data: {service_id:service_id, service_type:service_type},
+					dataType: 'json',
+					success:function(response){
+						var len = response.length;
+						
+						document.getElementById("client_fname").value = response[0]['client_firstname'];
+						document.getElementById("client_mname").value = response[0]['client_middlename'];
+						document.getElementById("client_lname").value= response[0]['client_lastname'];
+						document.getElementById("client_address").value= response[0]['client_address'];
+						document.getElementById("client_contact").value= response[0]['client_contactnumber'];
+						document.getElementById("pet_name").value = response[0]['pet_name'];
+						document.getElementById("pet_bdate").value= response[0]['pet_birthdate'];
+						document.getElementById("pet_sex").value= response[0]['pet_sex'];
+						document.getElementById("pet_species").value= response[0]['pet_species'];
+						document.getElementById("pet_breed").value= response[0]['pet_breed'];
+						document.getElementById("pet_color_markings").value= response[0]['pet_color_markings'];
+						document.getElementById("pet_vet").value= response[0]['pet_previous_vet'];
+
+						var strJson = JSON.stringify(response, null, 2);
+						alert(strJson);
+
+						if(service_type=="consultation"){
+							document.getElementById("consultation_attitude").selectedIndex = select1(response[0].appointment[0].consultation_attitude);
+							document.getElementById("consultation_drinking").selectedIndex = select1(response[0].appointment[0].consultation_drinking);
+							document.getElementById("consultation_bowels").selectedIndex = select1(response[0].appointment[0].consultation_bowels);
+							document.getElementById("consultation_coughing").selectedIndex = select1(response[0].appointment[0].consultation_coughing);
+							document.getElementById("consultation_urination").selectedIndex = select1(response[0].appointment[0].consultation_urination);
+							document.getElementById("consultation_appetite").selectedIndex = select1(response[0].appointment[0].consultation_appetite);
+							document.getElementById("consultation_vomiting").selectedIndex = select2(response[0].appointment[0].consultation_vomiting);
+							document.getElementById("consultation_sneezing").selectedIndex = select2(response[0].appointment[0].consultation_sneezing);
+							document.getElementById("consultation_notes").value = response[0].appointment[0].consultation_notes;
+							
+						}else if (service_type == "vaccine"){
+							document.getElementById("vaccine_complain").value = response[0].appointment[0].vaccine_complaint;
+							document.getElementById("vaccine_freq").value = response[0].appointment[0].vaccine_freq;
+							document.getElementById("vaccine_prevtreat").value = response[0].appointment[0].vaccine_prev_treat;
+							document.getElementById("vaccine_response").value = response[0].appointment[0].vaccine_response_treat;
+
+							document.getElementById("vaccine_addinfo_temp").value = response[0].appointment[0].vaccine_temp;
+							document.getElementById("vaccine_addinfo_ht").value = response[0].appointment[0].vaccine_ht;
+							document.getElementById("vaccine_addinfo_vcc").value = response[0].appointment[0].vaccine_given;
+
+						}else if (service_type == "surgery"){
+							document.getElementById("check_deworming").checked = response[0].appointment[0].consent_deworming == "Y" ? true : false; 							
+							document.getElementById("check_vaccination").checked = response[0].appointment[0].consent_vaccination == "Y" ? true : false;							
+							document.getElementById("check_dhlp").checked = response[0].appointment[0].consent_dhlp_cpv == "Y" ? true : false;
+							document.getElementById("check_rabies").checked = response[0].appointment[0].consent_rabies == "Y" ? true : false;
+							document.getElementById("check_cough").checked = response[0].appointment[0].consent_kennel_cough == "Y" ? true : false;
+							document.getElementById("check_micro").checked = response[0].appointment[0].consent_microsporum == "Y" ? true : false;
+							document.getElementById("check_labtest").checked = response[0].appointment[0].consent_labtest == "Y" ? true : false;
+							document.getElementById("check_treat").checked = response[0].appointment[0].consent_treatment == "Y" ? true : false;
+							document.getElementById("check_confine").checked = response[0].appointment[0].consent_confinement == "Y" ? true : false;
+							document.getElementById("check_anesurg").checked = response[0].appointment[0].consent_anesthesia == "Y" ? true : false;
+							document.getElementById("check_groom").checked = response[0].appointment[0].consent_grooming == "Y" ? true : false;
+							document.getElementById("check_bath").checked = response[0].appointment[0].consent_bath == "Y" ? true : false;
+							document.getElementById("check_boarding").checked = response[0].appointment[0].consent_boarding == "Y" ? true : false;
+							document.getElementById("check_dentistry").checked = response[0].appointment[0].consent_dentistry == "Y" ? true : false;
+							document.getElementById("consent_boarding_days").value = response[0].appointment[0].consent_boarding_days;
+							document.getElementById("consent_others").value = response[0].appointment[0].consent_others;
+							document.getElementById("consent_agree").checked = response[0].appointment[0].consent_agreement == "Y" ? true : false;
+						}
+
+					},
+					error:function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}
+				});
+
+				function select1(value1) {
+					if(value1 == "nrm" ){
+						return "0";
+					}else if(value1 == "abn" ){
+						return "1";
+					}else{
+						return "2";
+					}
+				}
+
+				function select2(value2){
+					if(value2 == "yes" ){
+						return "0";
+					}else if(value2 == "no" ){
+						return "1";
+					}else if(value2 == "occ" ){
+						return "2";
+					}
+				}
+				
 			});
 
 			

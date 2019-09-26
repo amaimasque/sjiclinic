@@ -1,104 +1,207 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title><link rel="stylesheet" href="css/sjiclinic.css">
-</head>
-<body>
-	<div class="w3-card w3-left-align" id="contconsent">
-				<div class="w3-container w3-green">
-					<h3><i class="demo-icon icon-service"></i> Consent Form</h3>
-				</div>
-				<div class="w3-container" style="padding: 20px">
-					<div class="w3-container">
-						<p>I verify that I am the owner (or authorized agent) of the described animal above and I do hereby authorize SJI PET TURF ANIMAL CLINIC and its staff to conduct the procedure(s) indicated below.</p>
-						<div class="w3-cell">
-							<input class="w3-check" type="checkbox" onchange="checkAll()" id="selectall">
-							<label id="lbl_select">Select All</label>
-						</div>
-						<div class="w3-cell-row">
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_deworming" name="deworming" value="Y">
-								<label>Deworming</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_vaccination" name="vaccination" value="Y">
-								<label>Vaccination</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_dhlp" name="dhlp" value="Y">
-								<label>DHLP-CPV</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_rabies" name="rabies" value="Y">
-								<label>Rabies</label>
-							</div>
-						</div>
-						<div class="w3-cell-row">
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_cough" name="cough" value="Y">
-								<label>Kennel Cough</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_micro" name="micro" value="Y">
-								<label>Microsporum</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_confine" name="confine" value="Y">
-								<label>Confinement</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_treat" name="treat" value="Y">
-								<label>Treatment</label>
-							</div>
-						</div>
-						<div class="w3-cell-row">
-							<div class="w3-cell w3-col l3 m6 s12">
-								<input class="w3-check" type="checkbox" id="check_labtest" name="labtest" value="Y">
-								<label>Laboratory Test</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s12">
-								<input class="w3-check" type="checkbox" id="check_anesurg" name="anesurg" value="Y">
-								<label>Anesthesia/Surgery</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_groom" name="groom" value="Y">
-								<label>Grooming</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_bath" name="bath" value="Y">
-								<label>Med/Reg bath</label>
-							</div>
-						</div>
-						<div class="w3-cell-row">
-							<div class="w3-cell w3-col l3 m12 s12">
-								<input class="w3-check" type="checkbox" id="check_dentistry" name="dentistry" value="Y">
-								<label>Dentistry</label>
-							</div>
-							<div class="w3-cell w3-col l3 m6 s6">
-								<input class="w3-check" type="checkbox" id="check_boarding" name="boarding" value="Y">
-								<label>Boarding</label>
-							</div>
-							<div class="w3-cell w3-col l6 m6 s12">
-								<input class="w3-input" type="number" name="boarding_numdays">
-							</div>
-							
-						</div>
-						<div class="w3-cell-row">
-							<div class="w3-cell">
-								<label>Others (please specify)</label>
-								<input class="w3-input" type="text" name="consent_others" id="consent_others">
-							</div>
-						</div>
-						<p>If my pet injured itself in attempt to escape or while undergoing grooming procedures, die during surgery or confinement, I will not hold SJI PET TURF ANIMAL CLINIC and its staff liable to the unfortunate event(s). I understand that the staff's main concern is for the utmost welfare of my pet and that the inherit risks exist, including unexpected complications and loss of life.</p>
-						<p>I am aware that there are risks involved in the administration of anyy anesthesia and with all procedures. If an unforeseen condition or emergency arises during the course of my pet's treatment, I further authorize the doctor to perform any additional procedures, which, in his/her judgment, may be immediately necessary to my pet's life and health. I acknowledge that no guarantee concerning the results of these procedurre has been made.</p>
-						<p>I UNDERSTAND THAT I AM RESPONSIBLE FOR ANY AND ALL CHARGES INCURRED WHILE MY PET IS IN THE CARE OF THE CLINIC AND THAT FULL PAYMENT IS DUE WHEN MY PET IS PICKED UP</p>
-						<p>If I neglect to pick up my pet 5 days after notice of dischargem the clinic may assume that my pet is already abandoned and therefore dispose my pet at their discretion, but I fully and clearly understand that abandoning my pet does not release me of my obligation to pay all the bill my pet has incurred.</p>
-					</div>
-					<div class="w3-container">
-						<input class="w3-radio" type="radio" name="consent_agree" value="Y" id="consent_agree">
-						<label>I agree</label>		
-					</div>
-				</div>		
-			</div>
-</body>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title></title><link rel="stylesheet" href="css/sjiclinic.css">
+
+</head>
+
+<body>
+
+	<div class="w3-card w3-left-align" id="contconsent">
+
+				<div class="w3-container w3-green">
+
+					<h3><i class="demo-icon icon-service"></i> Consent Form</h3>
+
+				</div>
+
+				<div class="w3-container" style="padding: 20px">
+
+					<div class="w3-container">
+
+						<p>I verify that I am the owner (or authorized agent) of the described animal above and I do hereby authorize SJI PET TURF ANIMAL CLINIC and its staff to conduct the procedure(s) indicated below.</p>
+
+						<div class="w3-cell">
+
+							<input class="w3-check" type="checkbox" onchange="checkAll()" id="selectall">
+
+							<label id="lbl_select">Select All</label>
+
+						</div>
+
+						<div class="w3-cell-row">
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_deworming" name="deworming" value="Y">
+
+								<label>Deworming</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_vaccination" name="vaccination" value="Y">
+
+								<label>Vaccination</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_dhlp" name="dhlp" value="Y">
+
+								<label>DHLP-CPV</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_rabies" name="rabies" value="Y">
+
+								<label>Rabies</label>
+
+							</div>
+
+						</div>
+
+						<div class="w3-cell-row">
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_cough" name="cough" value="Y">
+
+								<label>Kennel Cough</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_micro" name="micro" value="Y">
+
+								<label>Microsporum</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_confine" name="confine" value="Y">
+
+								<label>Confinement</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_treat" name="treat" value="Y">
+
+								<label>Treatment</label>
+
+							</div>
+
+						</div>
+
+						<div class="w3-cell-row">
+
+							<div class="w3-cell w3-col l3 m6 s12">
+
+								<input class="w3-check" type="checkbox" id="check_labtest" name="labtest" value="Y">
+
+								<label>Laboratory Test</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s12">
+
+								<input class="w3-check" type="checkbox" id="check_anesurg" name="anesurg" value="Y">
+
+								<label>Anesthesia/Surgery</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_groom" name="groom" value="Y">
+
+								<label>Grooming</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_bath" name="bath" value="Y">
+
+								<label>Med/Reg bath</label>
+
+							</div>
+
+						</div>
+
+						<div class="w3-cell-row">
+
+							<div class="w3-cell w3-col l3 m12 s12">
+
+								<input class="w3-check" type="checkbox" id="check_dentistry" name="dentistry" value="Y">
+
+								<label>Dentistry</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l3 m6 s6">
+
+								<input class="w3-check" type="checkbox" id="check_boarding" name="boarding" value="Y">
+
+								<label>Boarding</label>
+
+							</div>
+
+							<div class="w3-cell w3-col l6 m6 s12">
+
+								<input class="w3-input" type="number" name="boarding_numdays" id="consent_boarding_days">
+
+							</div>
+
+							
+
+						</div>
+
+						<div class="w3-cell-row">
+
+							<div class="w3-cell">
+
+								<label>Others (please specify)</label>
+
+								<input class="w3-input" type="text" name="consent_others" id="consent_others">
+
+							</div>
+
+						</div>
+
+						<p>If my pet injured itself in attempt to escape or while undergoing grooming procedures, die during surgery or confinement, I will not hold SJI PET TURF ANIMAL CLINIC and its staff liable to the unfortunate event(s). I understand that the staff's main concern is for the utmost welfare of my pet and that the inherit risks exist, including unexpected complications and loss of life.</p>
+
+						<p>I am aware that there are risks involved in the administration of anyy anesthesia and with all procedures. If an unforeseen condition or emergency arises during the course of my pet's treatment, I further authorize the doctor to perform any additional procedures, which, in his/her judgment, may be immediately necessary to my pet's life and health. I acknowledge that no guarantee concerning the results of these procedurre has been made.</p>
+
+						<p>I UNDERSTAND THAT I AM RESPONSIBLE FOR ANY AND ALL CHARGES INCURRED WHILE MY PET IS IN THE CARE OF THE CLINIC AND THAT FULL PAYMENT IS DUE WHEN MY PET IS PICKED UP</p>
+
+						<p>If I neglect to pick up my pet 5 days after notice of dischargem the clinic may assume that my pet is already abandoned and therefore dispose my pet at their discretion, but I fully and clearly understand that abandoning my pet does not release me of my obligation to pay all the bill my pet has incurred.</p>
+
+					</div>
+
+					<div class="w3-container">
+
+						<input class="w3-radio" type="radio" name="consent_agree" value="Y" id="consent_agree">
+
+						<label>I agree</label>		
+
+					</div>
+
+				</div>		
+
+			</div>
+
+</body>
+
 </html>

@@ -288,7 +288,7 @@
 
 		if ($sql->execute() === TRUE) {
 
-            //header("Location: appointment.php");
+            header("Location: appointment.php");
 
     	} else {
 

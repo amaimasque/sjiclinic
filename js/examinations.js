@@ -20,7 +20,7 @@ function getExaminations(text, filter){
 		        var divexam = document.createElement("div");
 		        divexam.className = "div_examination w3-card";
 
-		        if(response[i]['state']==1){
+		        if(response[i]['state']==0){
 		        	divexam.className += " div_examination_new";
 		        }else{
 		        	divexam.className += " div_examination_read";
