@@ -638,7 +638,7 @@
 
 							<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_amount').style.display='block'">Amount</button>
 
-							<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm()">Edit</button>
+							<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm(this)">Edit</button>
 
 							<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_delete').style.display='block'">Delete</button>
 
@@ -663,7 +663,7 @@
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_amount').style.display='block'">Amount</button>
 
-						<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm()">Edit</button>
+						<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm(this)">Edit</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_delete').style.display='block'">Delete</button>
 
@@ -683,13 +683,13 @@
 
 						<a href="examinations.php" class="w3-bar-item w3-btn">Cancel</a>
 
-						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_consultation_diagnosis').style.display='block'">Diagnosis</button>
+						<button class="w3-bar-item w3-btn" onclick="consultDiagnosis()">Diagnosis</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_consultation_prognosis').style.display='block'">Prognosis</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_amount').style.display='block'">Amount</button>
 
-						<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm()">Edit</button>
+						<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm(this)">Edit</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_delete').style.display='block'">Delete</button>
 
@@ -710,7 +710,7 @@
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_amount').style.display='block'">Amount</button>
 
-						<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm()">Edit</button>
+						<button class="w3-bar-item w3-btn" id="btn_edit" onclick="enableForm(this)">Edit</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_delete').style.display='block'">Delete</button>
 
@@ -726,13 +726,92 @@
 
 	<script type="text/javascript">
 
-		function enableForm(){
-			if(edit_flag==0){
-				document.getElementById("btn_edit").innerHTML="Save";
-				edit_flag = 1;
+		var edit_flag=0;
+		var service_id = <?php echo $_GET['id']; ?>;
+		var service_type = "<?php echo $_GET['at']; ?>";
+
+		function enableForm(btn){
+			if(btn.innerHTML=="Edit"){
+				$("#cont_details input").attr("disabled", false);
+				document.getElementsByTagName("select").disabled = false;
+				$("#cont_details select").attr("disabled", false);
+				$("#cont_grooming input").attr("disabled", false);
+				btn.innerHTML="Save";
 			}else{
-				document.getElementById("btn_edit").innerHTML="Edit";					
-				edit_flag = 0;
+				btn.innerHTML="Edit";
+				$("#cont_details input").attr("disabled", true);
+				document.getElementsByTagName("select").disabled = true;
+				$("#cont_details select").attr("disabled", true);
+				$("#cont_grooming input").attr("disabled", true);
+
+				var appointment;
+				if(service_type=="consultation"){
+					var consultation_attitude = $("#consultation_attitude").val();
+					var consultation_drinking = $("#consultation_drinking").val();
+					var consultation_bowels = $("#consultation_bowels").val();
+					var consultation_coughing = $("#consultation_coughing").val();
+					var consultation_urination = $("#consultation_urination").val();
+					var consultation_appetite = $("#consultation_appetite").val();
+					var consultation_vomiting = $("#consultation_vomiting").val();
+					var consultation_sneezing = $("#consultation_sneezing").val();
+					var consultation_notes = $("#consultation_notes").val();
+
+					appointment = {service_id:service_id, service_type:service_type, consultation_attitude:consultation_attitude, consultation_drinking:consultation_drinking, consultation_bowels:consultation_bowels, consultation_coughing:consultation_coughing, consultation_urination:consultation_urination, consultation_appetite:consultation_appetite, consultation_vomiting:consultation_vomiting, consultation_sneezing:consultation_sneezing, consultation_notes:consultation_notes};
+				}else if(service_type=="vaccine"){
+					var vaccine_complain = $("#vaccine_complain").val();
+					var vaccine_freq = $("#vaccine_freq").val();
+					var vaccine_prevtreat = $("#vaccine_prevtreat").val();
+					var vaccine_response = $("#vaccine_response").val();
+
+					appointment = {service_id:service_id, service_type:service_type, vaccine_complain:vaccine_complain, vaccine_freq:vaccine_freq, vaccine_prevtreat:vaccine_prevtreat, vaccine_response:vaccine_response};
+				}else if(service_type=="surgery"){
+					var check_deworming = document.getElementById("check_deworming").checked ? $("#check_deworming").val() : "";
+					var check_vaccination = document.getElementById("check_vaccination").checked ? $("#check_vaccination").val() : "";
+					var check_dhlp = document.getElementById("check_dhlp").checked ? $("#check_dhlp").val() : "";
+					var check_rabies = document.getElementById("check_rabies").checked ? $("#check_rabies").val() : "";
+					var check_cough = document.getElementById("check_cough").checked ? $("#check_cough").val() : "";
+					var check_micro = document.getElementById("check_micro").checked ? $("#check_micro").val() : "";
+					var check_labtest = document.getElementById("check_labtest").checked ? $("#check_labtest").val() : "";
+					var check_treat = document.getElementById("check_treat").checked ? $("#check_treat").val() : "";
+					var check_confine = document.getElementById("check_confine").checked ? $("#check_confine").val() : "";
+					var check_anesurg = document.getElementById("check_anesurg").checked ? $("#check_anesurg").val() : "";
+					var check_groom = document.getElementById("check_groom").checked ? $("#check_groom").val() : "";
+					var check_bath = document.getElementById("check_bath").checked ? $("#check_bath").val() : "";
+					var check_boarding = document.getElementById("check_boarding").checked ? $("#check_boarding").val() : "";
+					var check_dentistry = document.getElementById("check_dentistry").checked ? $("#check_dentistry").val() : "";
+					var consent_boarding_days = $("#consent_boarding_days").val();
+					var consent_others = $("#consent_others").val();
+					var consent_agree = document.getElementById("consent_agree").checked ? $("#consent_agree").val() : "";
+					
+					appointment = {service_id:service_id, service_type:service_type, check_deworming:check_deworming, check_vaccination:check_vaccination, check_dhlp:check_dhlp, check_rabies:check_rabies, check_cough:check_cough, check_micro:check_micro, check_labtest:check_labtest, check_treat:check_treat, check_confine:check_confine, check_anesurg:check_anesurg, check_groom:check_groom, check_bath:check_bath, check_boarding:check_boarding, check_dentistry:check_dentistry, consent_boarding_days:consent_boarding_days, consent_others:consent_others, consent_agree:consent_agree};
+				}else if(service_type=="grooming"){
+					var grooming_cut = $("#grooming_cut").val();
+
+					appointment = {service_id:service_id, service_type:service_type, grooming_cut:grooming_cut};
+				}
+
+				//alert(JSON.stringify(appointment));
+
+				$.ajax({
+					url: 'query/savependingdetails.php',
+					type: 'post',
+					data: appointment,
+					dataType: 'json',
+					success:function(response){
+
+						var dataResult = JSON.parse(response);
+						if(dataResult.statusCode==200){
+							alert("Saved successfully!")					
+						}
+						else if(dataResult.statusCode==201){
+						   alert("Error occured!");
+						}
+
+					},
+					error:function(jqXHR, textStatus, errorThrown){
+						alert(errorThrown);
+					}
+				});				
 			}
 		}
 
@@ -741,27 +820,15 @@
 			$("#examinations").addClass("button_active");
 
 			document.getElementById("cont_info").setAttribute("w3-include-html","forms/clientinfo.html");
-			var form = "<?php echo $_GET['at'];?>";
 			
-			<?php
-				$type_of_form = $_GET['at'];
-				if($type_of_form!="grooming"){
-			?>
-				var edit_flag = 0;
-				document.getElementById("cont_"+form+"_buttons").style.display="block";
-				var formToLoad = "forms/"+form+".html";
+			if(service_type!="grooming"){
+				document.getElementById("cont_"+service_type+"_buttons").style.display="block";
+				var formToLoad = "forms/"+service_type+".html";
 				document.getElementById("cont_details").setAttribute("w3-include-html",formToLoad);
-			<?php
-				}else{
-			?>
+			}else{
 				document.getElementById("cont_grooming").style.display="block";
 				document.getElementById("cont_grooming_buttons").style.display="block";
-				$("#grooming_cut").removeAttr("disabled");
-			<?php
-				}
-			?>
-
-			
+			}
 
 			w3.includeHTML(function(){
 
@@ -772,11 +839,9 @@
 				$(".cont_buttons input").attr("disabled", false);
 
 				$("#cont_details select").attr("disabled", true);
-				var service_id = "<?php echo $_GET['id']; ?>";
-				var service_type = "<?php echo $_GET['at']; ?>";
 
 				$.ajax({
-					url: 'viewpendingdetails.php',
+					url: 'query/viewpendingdetails.php',
 					type: 'post',
 					data: {service_id:service_id, service_type:service_type},
 					dataType: 'json',
@@ -797,7 +862,7 @@
 						document.getElementById("pet_vet").value= response[0]['pet_previous_vet'];
 
 						var strJson = JSON.stringify(response, null, 2);
-						alert(strJson);
+						//alert(strJson);
 
 						if(service_type=="consultation"){
 							document.getElementById("consultation_attitude").selectedIndex = select1(response[0].appointment[0].consultation_attitude);
@@ -838,6 +903,9 @@
 							document.getElementById("consent_boarding_days").value = response[0].appointment[0].consent_boarding_days;
 							document.getElementById("consent_others").value = response[0].appointment[0].consent_others;
 							document.getElementById("consent_agree").checked = response[0].appointment[0].consent_agreement == "Y" ? true : false;
+							document.getElementById("div_selectall").style.display = "none";
+						}else if(service_type=="grooming"){
+							document.getElementById("grooming_cut").value = response[0].appointment[0].grooming_cut;
 						}
 
 					},
@@ -867,12 +935,42 @@
 				}
 				
 			});
-
-			
-
 		});
 
-		
+		function consultDiagnosis(){
+
+			$.ajax({
+				url: 'query/viewdiagnosis.php',
+				type: 'post',
+				data: {service_id},
+				dataType: 'json',
+				success:function(response){
+					var len = response.length;
+
+					alert(JSON.stringify(response));
+
+					document.getElementById("consultation_diagnosis_blood").value = response[0]['diagnosis_blood_exam'];
+					document.getElementById("consultation_diagnosis_urine").value = response[0]['diagnosis_urine_exam'];
+					document.getElementById("consultation_diagnosis_distemper").value = response[0]['diagnosis_distemper_test'];
+					document.getElementById("consultation_diagnosis_pvtest").value = response[0]['diagnosis_parvo_test'];
+					document.getElementById("consultation_diagnosis_fecalysis").value = response[0]['diagnosis_fecalysis'];
+					document.getElementById("consultation_diagnosis_scraping").value = response[0]['diagnosis_skin_scraping'];
+					document.getElementById("consultation_diagnosis_ehtest").value = response[0]['diagnosis_ehrlichia_test'];
+					document.getElementById("consultation_diagnosis_hwtest").value = response[0]['diagnosis_hw_test'];
+					document.getElementById("consultation_diagnosis_earswab").value = response[0]['diagnosis_ear_swabbing'];
+					document.getElementById("consultation_diagnosis_vagsmear").value = response[0]['diagnosis_vaginal_smear'];
+					document.getElementById("consultation_diagnosis_ultras").value = response[0]['diagnosis_ultrasound'];
+					document.getElementById("consultation_diagnosis_xray").value = response[0]['diagnosis_xray'];
+					document.getElementById("consultation_diagnosis_otest").value = response[0]['diagnosis_others'];
+
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(textStatus + errorThrown);
+				}
+			});
+
+			document.getElementById('modal_consultation_diagnosis').style.display='block';
+		}
 
 	</script>
 
