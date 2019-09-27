@@ -78,7 +78,8 @@
 
 			    		<label>Veterinarian Name</label>
 
-			    		<input type="text" class="w3-input" name="">
+			    		<input type="text" class="w3-input" name="vet_fname" id="vet_fname" placeholder="First Name">
+			    		<input type="text" class="w3-input" name="vet_lname" id="vet_lname" placeholder="Last Name">
 
 			    	</div>
 
@@ -86,7 +87,7 @@
 
 			    		<label>Username</label>
 
-			    		<input type="text" class="w3-input" name="new_username">
+			    		<input type="text" class="w3-input" name="new_username" id="new_username">
 
 			    	</div>
 
@@ -94,7 +95,7 @@
 
 			    		<label>Password</label>
 
-			    		<input type="assword" class="w3-input" name="new_password">
+			    		<input type="password" class="w3-input" name="new_password" id="new_password">
 
 			    	</div>
 
@@ -114,7 +115,7 @@
 
 				    <div class="w3-cell">
 
-				    	<button class="w3-button w3-border" style="width: 100%" onclick="document.getElementById('modal_profilesetting').style.display='none'">Save</button>
+				    	<button class="w3-button w3-border" style="width: 100%" onclick="saveProfile()">Save</button>
 
 				    </div>
 
@@ -158,7 +159,7 @@
 
 					<div class="w3-dropdown-content w3-bar-block w3-card-4 w3-border" style="right: 15px;" id="dropdown_menu">
 
-						<button class="w3-button w3-bar-item" onclick="document.getElementById('modal_profilesetting').style.display='block'">Profile Settings</button>
+						<button class="w3-button w3-bar-item" onclick="viewProfile()">Profile Settings</button>
 
 						<button onclick="document.getElementById('modal_logout').style.display='block'" class="w3-button w3-bar-item">Logout</a>
 
@@ -188,7 +189,7 @@
 
 			<a class="w3-button w3-animate-top w3-block" href="#">Reports</a>
 
-			<button class="w3-button w3-animate-top w3-block" onclick="document.getElementById('modal_profilesetting').style.display='block'">Profile Settings</button>
+			<button class="w3-button w3-animate-top w3-block" onclick="viewProfile()">Profile Settings</button>
 
 			<button class="w3-button w3-animate-top w3-block" onclick="document.getElementById('modal_logout').style.display='block'">Logout</button>
 
@@ -237,6 +238,50 @@
 
 			}
 
+		}
+
+		function saveProfile(){
+
+			var vet_fname = document.getElementById("vet_fname").value;
+			var vet_lname = document.getElementById("vet_lname").value;
+			var n_uname = document.getElementById("new_username").value;
+			var n_pass = document.getElementById("new_password").value;
+
+			$.ajax({
+				url: 'query/saveprofile.php',
+				type: 'post',
+				data: {vet_fname:vet_fname, vet_lname:vet_lname, n_uname:n_uname, n_pass:n_pass, type:"save"},
+				dataType: 'text',
+				success:function(response){
+					alert(response);
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			});
+
+			document.getElementById('modal_profilesetting').style.display='none';
+		}
+
+		function viewProfile(){
+
+			$.ajax({
+				url: 'query/saveprofile.php',
+				type: 'post',
+				data: {type:"view"},
+				dataType: 'json',
+				success:function(response){
+					document.getElementById("vet_fname").value = response[0]['fname'];
+					document.getElementById("vet_lname").value = response[0]['lname'];
+					document.getElementById("new_username").value = response[0]['uname'];
+					document.getElementById("new_password").value = response[0]['upass'];
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			});
+
+			document.getElementById('modal_profilesetting').style.display='block';
 		}
 
 	</script>

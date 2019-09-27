@@ -84,10 +84,6 @@
 
 		require("nav_admin.php");
 
-		//$viewby  = $_GET["viewby"];
-
-		//if($viewby==""){ $viewby = "client"; }	
-
 	?>
 
 
@@ -126,6 +122,15 @@
 
 			$("#history").addClass("button_active");
 
+            var btn_view = function(value, data, cell, row, options){ //plain text value
+                var button = $("<a class='w3-button'>View</a>");
+                
+                button.on("click", function(){
+                    alert("Location: viewclient.php");
+                });
+
+                return button;
+            };
 
 			var tabledata = [
                 
@@ -134,7 +139,8 @@
                     if($_GET['viewby'] == "client"){
                         while($row=mysqli_fetch_array($sql)){
                 ?>
-             	{id: <?php echo $row['client_id'];?>, 
+             	{
+                id: <?php echo $row['client_id'];?>, 
                 fname: "<?php echo $row['client_firstname'];?>",     
                 mname: "<?php echo $row['client_middlename'];?>", 
                 lname: "<?php echo $row['client_lastname'];?>",
@@ -175,6 +181,7 @@
                     <?php       
                         if($_GET['viewby'] == "client"){
                     ?>
+                    {title:"" , sortable:false, formatter:btn_view},
              	    {title:"ID", field:"id", width:50, responsive:0, sorter:"number"},
             	 	{title:"First Name", field:"fname", width:200, responsive:0, sorter:"string"},
             	 	{title:"Middle Name", field:"mname", width:150, responsive:0, sorter:"string"},
@@ -200,10 +207,6 @@
                     ?>
              	],
             });
-            
-            //AJAX table.setData("data/loadclient.php");
-
-            //CCCCCC
 
             <?php       
                 if($_GET['viewby'] == "client"){

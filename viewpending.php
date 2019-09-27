@@ -180,6 +180,7 @@
 
 	<?php
 		require("nav_admin.php");
+		include("query/readpending.php");
 	?>
 
 	<!-- MODAL FOR VACCINE ADDITIONAL INFO -->
@@ -246,7 +247,7 @@
 
 			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_vaccine_info').style.display='none'">CANCEL</button>
 
-			    	<a class="w3-button w3-border">SAVE</a>
+			    	<button class="w3-button w3-border" onclick="saveVaccineInfo()">SAVE</button>
 
 			    </div>
 
@@ -406,7 +407,7 @@
 
 			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_consultation_diagnosis').style.display='none'">CANCEL</button>
 
-			    	<a class="w3-button w3-border">SAVE</a>
+			    	<button onclick="saveDiagnosis()" class="w3-button w3-border">SAVE</button>
 
 			    </div>
 
@@ -478,7 +479,7 @@
 
 			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_consultation_prognosis').style.display='none'">CANCEL</button>
 
-			    	<a class="w3-button w3-border">SAVE</a>
+			    	<button class="w3-button w3-border" onclick="savePrognosis()">SAVE</button>
 
 			    </div>
 
@@ -510,7 +511,7 @@
 
 		    				<label>Amount Due</label>
 
-		    				<input class="w3-input" type="text" name="consultation_diagnosis_urine" id="consultation_diagnosis_urine">
+		    				<input class="w3-input" type="number" id="amount_due" value="0" onkeyup="dueCalculate(this)" required>
 
 		    			</div>
 
@@ -522,7 +523,7 @@
 
 		    				<label>Amount Given</label>
 
-		    				<input class="w3-input" type="text" name="consultation_diagnosis_urine" id="consultation_diagnosis_urine">
+		    				<input class="w3-input" type="number" name="amount_given" id="amount_given" value="0" onkeyup="givenCalculate(this)" required>
 
 		    			</div>
 
@@ -530,7 +531,7 @@
 
 		    				<label>Change</label>
 
-		    				<input class="w3-input" type="text" name="consultation_diagnosis_urine" id="consultation_diagnosis_urine">
+		    				<input class="w3-input" type="number" id="amount_change" value="0" disabled>
 
 		    			</div>
 
@@ -546,7 +547,7 @@
 
 			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_amount').style.display='none'">CANCEL</button>
 
-			    	<a class="w3-button w3-border">SAVE</a>
+			    	<button onclick="saveAmount()" class="w3-button w3-border">SAVE</button>
 
 			    </div>
 
@@ -578,7 +579,7 @@
 
 			    	<button class="w3-button w3-border" onclick="document.getElementById('modal_delete').style.display='none'">NO</button>
 
-			    	<a class="w3-button w3-border">YES</a>
+			    	<button class="w3-button w3-border" onclick="deletePending()">YES</button>
 
 			    </div>
 
@@ -659,7 +660,7 @@
 
 						<a href="examinations.php" class="w3-bar-item w3-btn">Cancel</a>
 
-						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_vaccine_info').style.display='block'">Info</button>
+						<button class="w3-bar-item w3-btn" onclick="viewVaccineInfo()">Info</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_amount').style.display='block'">Amount</button>
 
@@ -683,9 +684,9 @@
 
 						<a href="examinations.php" class="w3-bar-item w3-btn">Cancel</a>
 
-						<button class="w3-bar-item w3-btn" onclick="consultDiagnosis()">Diagnosis</button>
+						<button class="w3-bar-item w3-btn" onclick="viewDiagnosis()">Diagnosis</button>
 
-						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_consultation_prognosis').style.display='block'">Prognosis</button>
+						<button class="w3-bar-item w3-btn" onclick="viewPrognosis()">Prognosis</button>
 
 						<button class="w3-bar-item w3-btn" onclick="document.getElementById('modal_amount').style.display='block'">Amount</button>
 
@@ -726,7 +727,6 @@
 
 	<script type="text/javascript">
 
-		var edit_flag=0;
 		var service_id = <?php echo $_GET['id']; ?>;
 		var service_type = "<?php echo $_GET['at']; ?>";
 
@@ -881,10 +881,6 @@
 							document.getElementById("vaccine_prevtreat").value = response[0].appointment[0].vaccine_prev_treat;
 							document.getElementById("vaccine_response").value = response[0].appointment[0].vaccine_response_treat;
 
-							document.getElementById("vaccine_addinfo_temp").value = response[0].appointment[0].vaccine_temp;
-							document.getElementById("vaccine_addinfo_ht").value = response[0].appointment[0].vaccine_ht;
-							document.getElementById("vaccine_addinfo_vcc").value = response[0].appointment[0].vaccine_given;
-
 						}else if (service_type == "surgery"){
 							document.getElementById("check_deworming").checked = response[0].appointment[0].consent_deworming == "Y" ? true : false; 							
 							document.getElementById("check_vaccination").checked = response[0].appointment[0].consent_vaccination == "Y" ? true : false;							
@@ -913,41 +909,39 @@
 						alert(errorThrown);
 					}
 				});
-
-				function select1(value1) {
-					if(value1 == "nrm" ){
-						return "0";
-					}else if(value1 == "abn" ){
-						return "1";
-					}else{
-						return "2";
-					}
-				}
-
-				function select2(value2){
-					if(value2 == "yes" ){
-						return "0";
-					}else if(value2 == "no" ){
-						return "1";
-					}else if(value2 == "occ" ){
-						return "2";
-					}
-				}
 				
 			});
 		});
 
-		function consultDiagnosis(){
+
+		function select1(value1) {
+			if(value1 == "nrm" ){
+				return "0";
+			}else if(value1 == "abn" ){
+				return "1";
+			}else{
+				return "2";
+			}
+		}
+
+		function select2(value2){
+			if(value2 == "yes" ){
+				return "0";
+			}else if(value2 == "no" ){
+				return "1";
+			}else if(value2 == "occ" ){
+				return "2";
+			}
+		}
+
+		function viewDiagnosis(){
 
 			$.ajax({
-				url: 'query/viewdiagnosis.php',
+				url: 'query/diagnosis.php',
 				type: 'post',
-				data: {service_id},
+				data: {service_id:service_id, type:"view"},
 				dataType: 'json',
 				success:function(response){
-					var len = response.length;
-
-					alert(JSON.stringify(response));
 
 					document.getElementById("consultation_diagnosis_blood").value = response[0]['diagnosis_blood_exam'];
 					document.getElementById("consultation_diagnosis_urine").value = response[0]['diagnosis_urine_exam'];
@@ -958,7 +952,7 @@
 					document.getElementById("consultation_diagnosis_ehtest").value = response[0]['diagnosis_ehrlichia_test'];
 					document.getElementById("consultation_diagnosis_hwtest").value = response[0]['diagnosis_hw_test'];
 					document.getElementById("consultation_diagnosis_earswab").value = response[0]['diagnosis_ear_swabbing'];
-					document.getElementById("consultation_diagnosis_vagsmear").value = response[0]['diagnosis_vaginal_smear'];
+					document.getElementById("consultation_diagnosis_vagsmear").value = response[0]['diagnosis_vagsmear'];
 					document.getElementById("consultation_diagnosis_ultras").value = response[0]['diagnosis_ultrasound'];
 					document.getElementById("consultation_diagnosis_xray").value = response[0]['diagnosis_xray'];
 					document.getElementById("consultation_diagnosis_otest").value = response[0]['diagnosis_others'];
@@ -970,6 +964,178 @@
 			});
 
 			document.getElementById('modal_consultation_diagnosis').style.display='block';
+		}
+
+		function saveDiagnosis(){
+
+			var dblood = document.getElementById("consultation_diagnosis_blood").value;
+			var durine = document.getElementById("consultation_diagnosis_urine").value;
+			var ddtemper = document.getElementById("consultation_diagnosis_distemper").value;
+			var dpvtest = document.getElementById("consultation_diagnosis_pvtest").value;
+			var dfec = document.getElementById("consultation_diagnosis_fecalysis").value;
+			var dscr = document.getElementById("consultation_diagnosis_scraping").value; 
+			var dehtest = document.getElementById("consultation_diagnosis_ehtest").value;
+			var dhwtest = document.getElementById("consultation_diagnosis_hwtest").value;
+			var dears = document.getElementById("consultation_diagnosis_earswab").value;
+			var dvags = document.getElementById("consultation_diagnosis_vagsmear").value;
+			var dult = document.getElementById("consultation_diagnosis_ultras").value;
+			var dxray = document.getElementById("consultation_diagnosis_xray").value;
+			var dotest = document.getElementById("consultation_diagnosis_otest").value;
+
+			$.ajax({
+				url: 'query/diagnosis.php',
+				type: 'post',
+				data: {service_id:service_id, type:"save", dblood:dblood, durine:durine, ddtemper:ddtemper, dpvtest:dpvtest, dfec:dfec, dscr:dscr, dehtest:dehtest, dhwtest:dhwtest, dears:dears, dvags:dvags, dult:dult, dxray:dxray, dotest:dotest},
+				dataType: 'text',
+				success:function(response){
+					alert(response);
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(textStatus + errorThrown);
+				}
+			});
+
+			document.getElementById('modal_consultation_diagnosis').style.display='none';
+		}
+
+		function viewPrognosis(){
+
+			$.ajax({
+				url: 'query/prognosis.php',
+				type: 'post',
+				data: {service_id:service_id, type:"view"},
+				dataType: 'json',
+				success:function(response){
+
+					document.getElementById("consultation_prog_dx").value = response[0]['prognosis'];
+					document.getElementById("consultation_prog_treat").value = response[0]['treatment'];
+					document.getElementById("consultation_prog_rx").value = response[0]['prescribed_med'];
+
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(textStatus + errorThrown);
+				}
+			});
+
+			document.getElementById('modal_consultation_prognosis').style.display='block';
+		}
+
+		function savePrognosis(){
+
+			var dx = document.getElementById("consultation_prog_dx").value;
+			var trt = document.getElementById("consultation_prog_treat").value;
+			var rx = document.getElementById("consultation_prog_rx").value;
+
+			$.ajax({
+				url: 'query/prognosis.php',
+				type: 'post',
+				data: {service_id:service_id, type:"save", dx:dx, trt:trt, rx:rx},
+				dataType: 'text',
+				success:function(response){
+					alert(response);
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(textStatus + errorThrown);
+				}
+			});
+
+			document.getElementById('modal_consultation_prognosis').style.display='none';
+		}
+
+		function deletePending(){
+			$.ajax({
+				url: 'query/deletepending.php',
+				type: 'post',
+				data: {service_id:service_id},
+				dataType: 'text',
+				success:function(response){
+					if(response=="SUCCESS"){
+						window.location.href="examinations.php";
+					}else{
+						alert(response);
+					}
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			});
+
+			document.getElementById('modal_delete').style.display='none';
+		}
+
+		function saveVaccineInfo(){
+			var temp = document.getElementById("vaccine_addinfo_temp").value;
+			var ht = document.getElementById("vaccine_addinfo_ht").value;
+			var vcc = document.getElementById("vaccine_addinfo_vcc").value;
+			$.ajax({
+				url: 'query/vaccineinfo.php',
+				type: 'post',
+				data: {service_id:service_id, temp:temp, ht:ht, vcc:vcc, type:"save"},
+				dataType: 'text',
+				success:function(response){
+					alert(response);
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			});
+
+			document.getElementById('modal_vaccine_info').style.display='none';
+		}
+
+		function viewVaccineInfo(){
+
+			$.ajax({
+				url: 'query/vaccineinfo.php',
+				type: 'post',
+				data: {service_id:service_id, type:"view"},
+				dataType: 'json',
+				success:function(response){
+					document.getElementById("vaccine_addinfo_temp").value = response[0]['vaccine_temp'];
+					document.getElementById("vaccine_addinfo_ht").value = response[0]['vaccine_ht'];
+					document.getElementById("vaccine_addinfo_vcc").value = response[0]['vaccine_given'];
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			});
+
+			document.getElementById('modal_vaccine_info').style.display='block';
+
+		}
+
+		function dueCalculate(due){
+			var due = due.value;
+			var given = document.getElementById("amount_given").value;
+			document.getElementById("amount_change").value = due-given;
+		}
+
+		function givenCalculate(given){
+			var given = given.value;
+			var due = document.getElementById("amount_due").value;
+			document.getElementById("amount_change").value = given-due;
+		}
+
+		function saveAmount(){
+			var amount = document.getElementById("amount_due").value!="" ? document.getElementById("amount_due").value : 0;
+
+			$.ajax({
+				url: 'query/endappointment.php',
+				type: 'post',
+				data: {service_id:service_id, amount:amount},
+				dataType: 'text',
+				success:function(response){
+					alert(response);
+					if(response=="SUCCESS"){
+						window.location.href="examinations.php";
+					}
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					alert(errorThrown);
+				}
+			});
+
+			document.getElementById('modal_amount').style.display='none';
 		}
 
 	</script>

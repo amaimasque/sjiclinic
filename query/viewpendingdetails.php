@@ -44,11 +44,8 @@
 			$vaccine_freq = $row['vaccine_freq'];
 			$vaccine_prev_treat = $row['vaccine_prev_treat'];
 			$vaccine_response_treat = $row['vaccine_response_treat'];
-			$vaccine_temp = $row['vaccine_temp'];
-			$vaccine_ht = $row['vaccine_ht'];
-			$vaccine_given = $row['vaccine_given'];
 
-			$appointment_arr[] = array("vaccine_complaint" => $vaccine_complaint, "vaccine_freq" => $vaccine_freq, "vaccine_prev_treat" => $vaccine_prev_treat, "vaccine_response_treat" => $vaccine_response_treat, "vaccine_temp" => $vaccine_temp, "vaccine_ht" => $vaccine_ht, "vaccine_given" => $vaccine_given);
+			$appointment_arr[] = array("vaccine_complaint" => $vaccine_complaint, "vaccine_freq" => $vaccine_freq, "vaccine_prev_treat" => $vaccine_prev_treat, "vaccine_response_treat" => $vaccine_response_treat);
 		}elseif ($service_type == "surgery") {
 			$consent_deworming = $row['consent_deworming'];
 			$consent_vaccination = $row['consent_vaccination'];

@@ -7,22 +7,22 @@ $filter = $_POST['filter'];
 
 if ($texttosearch == "" && $filter == "") {
 
-	$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE tbl_service.service_amt IS NULL ORDER BY tbl_service.service_apt_date DESC";
+	$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE tbl_service.service_amt IS NULL AND tbl_service.service_del!=1 ORDER BY tbl_service.service_apt_date DESC";
 
 }else if ($texttosearch != "" && $filter == ""){
 	
-	$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_clients.client_firstname LIKE '%".$texttosearch."%' OR tbl_clients.client_lastname LIKE '%".$texttosearch."%' OR tbl_pets.pet_name LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL";
+	$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_clients.client_firstname LIKE '%".$texttosearch."%' OR tbl_clients.client_lastname LIKE '%".$texttosearch."%' OR tbl_pets.pet_name LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL AND tbl_service.service_del!=1";
 
 }else if ($filter != "") {
 	
 	if ($filter == "aptType") {
-		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_service.service_type LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL";
+		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_service.service_type LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL AND tbl_service.service_del!=1";
 	}elseif ($filter == "breed") {
-		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_pets.pet_breed LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL";
+		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_pets.pet_breed LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL AND tbl_service.service_del!=1";
 	}elseif ($filter == "species") {
-		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_pets.pet_species LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL";
+		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_pets.pet_species LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL AND tbl_service.service_del!=1";
 	}elseif ($filter == "date") {
-		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_service.service_apt_date LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL";
+		$sql = "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE (tbl_service.service_apt_date LIKE '%".$texttosearch."%')  AND tbl_service.service_amt IS NULL AND tbl_service.service_del!=1";
 	}
 
 }
