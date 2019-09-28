@@ -32,47 +32,45 @@
 
 	<link rel="stylesheet" href="css/w3.css">
 
-	<link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
-
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
     <link rel="stylesheet" href="css/tabulator/tabulator.css"/>
 
     <script type="text/javascript" src="js/tabulator/tabulator.js"></script>
 
-    <link data-require="font-awesome@*" data-semver="4.5.0" rel="stylesheet" href="css/sjiclinic.css" />
+    <link rel="stylesheet" href="css/sjiclinic.css">
 
 	<style type="text/css">
 
-#div_content{
+        #div_content{
 
-    position: absolute;
+            position: absolute;
 
-    margin: auto;
+            margin: auto;
 
-    top: 0;
+            top: 0;
 
-    right: 0;
+            right: 0;
 
-    bottom: 0;
+            bottom: 0;
 
-    left: 0;
+            left: 0;
 
-    width: 70%;
+            width: 70%;
 
-    height: 50%;
+            height: 50%;
 
-}
+        }
 
-@media screen and (max-width: 480px){
+        @media screen and (max-width: 480px){
 
-    #div_content{
+            #div_content{
 
-        width: 100%;
+                width: 100%;
 
-    }
+            }
 
-}
+        }
 
 	</style>
 
@@ -106,9 +104,7 @@
 
 			</div>
 
-		</div>
-
-		
+		</div>	
 
 		<div id="tbl_history"></div>
 
@@ -122,14 +118,8 @@
 
 			$("#history").addClass("button_active");
 
-            var btn_view = function(value, data, cell, row, options){ //plain text value
-                var button = $("<a class='w3-button'>View</a>");
-                
-                button.on("click", function(){
-                    alert("Location: viewclient.php");
-                });
-
-                return button;
+            var btn_view = function(cell, formatterParams){ //plain text value
+                 return "<button class='demo-icon icon-view w3-btn w3-text-white' style='background: #729380'>View</button>";
             };
 
 			var tabledata = [
@@ -181,7 +171,9 @@
                     <?php       
                         if($_GET['viewby'] == "client"){
                     ?>
-                    {title:"" , sortable:false, formatter:btn_view},
+                    {formatter:btn_view, width:100, align:"center", cellClick:function(e, cell){
+                        window.open("viewclient.php?id=" + cell.getRow().getData().id, "_blank");
+                    }},
              	    {title:"ID", field:"id", width:50, responsive:0, sorter:"number"},
             	 	{title:"First Name", field:"fname", width:200, responsive:0, sorter:"string"},
             	 	{title:"Middle Name", field:"mname", width:150, responsive:0, sorter:"string"},
@@ -214,21 +206,17 @@
                 $("#btn_client").css('background', '#CCCCCC');
             <?php
                 }
-            ?>
 
-             <?php       
                 if($_GET['viewby'] == "visits"){
             ?>
                 $("#btn_visits").css('background', '#CCCCCC');
-                $(document).getElementById("list_title").innerHTML = "Visits"
+                document.getElementById("list_title").innerHTML = "Visits"
             <?php
                 }
             ?>
 		});
 
     </script>
-
-    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 
 </body>
 
