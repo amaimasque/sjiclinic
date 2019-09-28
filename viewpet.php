@@ -441,6 +441,14 @@
              	],
             });
 
+            <?php
+            	if(isset($_GET['sid'])){
+            ?>
+            	document.getElementById("modal_visit").style.display = "block";
+            <?php
+            	}
+            ?>
+
 		});	
 
 	</script>

@@ -10,7 +10,7 @@
 
     if(isset($_GET['viewby']) && $_GET['viewby'] == "visits"){
 
-        $sql = mysqli_query($con, "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id");
+        $sql = mysqli_query($con, "SELECT * from tbl_service INNER JOIN tbl_pets ON tbl_service.patient_id=tbl_pets.pet_id INNER JOIN tbl_clients ON tbl_pets.pet_owner_id=tbl_clients.client_id WHERE tbl_service.service_del!=1");
 
     }
    
@@ -188,6 +188,10 @@
                     <?php                      
                         if($_GET['viewby'] == "visits"){
                     ?>
+                    {formatter:btn_view, width:100, align:"center", cellClick:function(e, cell){
+                        window.open("viewpet.php?id=" + cell.getRow().getData().patientid + "&sid=" + cell.getRow().getData().id, "_blank");
+                        document.getElementById("modal_visit").style.display = "block";
+                    }},
                     {title:"ID", field:"id", width:50, responsive:0, sorter:"number"},
                     {title:"Patient ID", field:"patientid", width:50, responsive:0, sorter:"number"},
                     {title:"Patient Name", field:"patientname", width:200, responsive:0, sorter:"string"},
