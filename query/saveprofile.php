@@ -16,7 +16,7 @@
 
 		$sql = $con->prepare("UPDATE tbl_users SET username=?, user_pwd=?, user_firstname=?, user_lastname=?");
 
-		$sql->bind_param("ssss", $n_uname, $n_pass, $vet_fname, $vet_fname);
+		$sql->bind_param("ssss", $n_uname, $n_pass, $vet_fname, $vet_lname);
 
 		if($sql->execute()==true){
 			echo "SUCCESS";

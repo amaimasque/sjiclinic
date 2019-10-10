@@ -20,6 +20,12 @@
 
 	<style type="text/css">
 
+body{
+
+	font-family: "Segoe UI", sans-serif;
+
+}
+
 #contbody{
 
 	position: absolute;
@@ -36,14 +42,39 @@
 
     width: 70%;
 
-    height: 50%;
+    height: 75%;
 
 }
 
 
-#contchart {
+.ct-chart{
+	
+	height: 250px;
+	width: 100%;
 
-	height: 300px;
+}
+
+.visits{
+
+	margin: 10px;
+	padding: 20px;
+	text-align: center;
+	background: #FDEEF1;
+
+}
+
+.novisits{
+
+	font-size: 20pt;
+	color: #802F33;
+	font-weight: bold;
+
+}
+
+#cont_legends div{
+
+	display: inline-block;
+	text-align: center;
 
 }
 
@@ -51,6 +82,34 @@
 
 	#contbody{
 		margin-top: 70px;
+	}
+
+}
+
+@media screen and (max-width: 1001px){
+
+	#contchart{
+
+		height: 350px!important;
+	}
+
+	.ct-chart{
+
+		height: 250px;
+	}
+
+}
+
+@media screen and (max-width: 615px){
+
+	#contbody{
+
+		width: 90%;
+
+	}
+
+	#cont_legends{
+		background: red
 	}
 
 }
@@ -76,112 +135,73 @@
 		<div class="w3-topbar w3-border-black" style="width: 100%"></div>
 
 		<div class="w3-row">
-
-			<div class="w3-col l6 m12 s12" id="contchart">
-
-				<div class="ct-chart ct-perfect-fourth"></div>
-
-			</div>
-
-			<div class="w3-col l6 m12 s12" id="contchart">
-
-				<p>Weekly Appointment</p>
-
-				<div class="ct-chart2 ct-perfect-fourth"></div>
-
+			<div class="w3-col l4 m6 s12">
+				<div class="w3-card visits">
+					<div id="noweekly" class="novisits">0</div>
+					<div>WEEKLY VISITS</div>
 				</div>
-
-				
-
 			</div>
-
-					
-
+			<div class="w3-col l4 m6 s12">
+				<div class="w3-card visits">
+					<div id="nomonthly" class="novisits">0</div>
+					<div>MONTHLY VISITS</div>
+				</div>
+			</div>
+			<div class="w3-col l4 m12 s12">
+				<div class="w3-card visits">
+					<div id="noyearly" class="novisits">0</div>
+					<div>YEARLY VISITS</div>
+				</div>
+			</div>
 		</div>
 
+		<div class="w3-row">
+
+			<div class="w3-col l6 m12 s12" id="contchart">
+
+				<h3>TODAY'S APPOINTMENTS</h3>
+
+				<div class="ct-chart ct-perfect-fourth" id="chart_daily"></div>
+
+			</div>
+
+			<div class="w3-col l6 m12 s12" id="contchart">
+
+				<h3>WEEKLY REPORT</h3>
+
+				<div class="ct-chart ct-perfect-fourth" id="chart_weekly"></div>
+
+				<div id="cont_legends">
+					<div class="w3-col l4 m4 s4" style="color: #D70206;">
+						<span>&diams; Consultation</span>
+					</div>
+					<div class="w3-col l4 m4 s4" style="color: #F05B4F;">
+						<span>&diams; Confinement</span>
+					</div>
+					<div class="w3-col l4 m4 s4" style="color: #F4C63D;">
+						<span>&diams; Surgery</span>
+					</div>
+					<div class="w3-col l6 m6 s6" style="color: #D17905;">
+						<span>&diams; Vaccine</span>
+					</div>
+					<div class="w3-col l6 m6 s6" style="color: #453D3F;">
+						<span>&diams; Laboratory</span>
+					</div>
+				</div>
+			
+			</div>
+	
+		</div>				
+
 	</div>
+
+
 
 	<script src="js/chartist.min.js"></script>
 
 	<script type="text/javascript">
 
-		$(document).ready(function(e){
-
-
-			var currdate = new Date();
-			
-			<?php
-
-				include("db_connection.php");
-				$sql = "SELECT * FROM tbl_service WHERE service_apt_date"
-
-			?>
-
-			new Chartist.Bar('.ct-chart', {
-
-			  labels: ['Consultation', 'Grooming', 'Surgery',  'Vaccine'],
-
-			  series: [1, 2, 5, 3]
-
-			}, {
-
-				axisX: {
-
-					onlyInteger: true
-
-				},	
-
-				axisY: {
-
-					onlyInteger: true
-
-				},
-
-				height: '300px',
-
-				width: '100%',
-
-				distributeSeries: true,
-
-				referenceValue: null,
-
-
-
-			});
-
-
-
-			new Chartist.Line('.ct-chart2', {
-
-			  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-
-			  series: [
-
-			    [12, 9, 7, 8, 5],
-
-			    [2, 1, 3.5, 7, 3],
-
-			    [1, 3, 4, 5, 6],
-
-			    [4, 5, 2, 1, 8]
-
-			  ]
-
-			}, {
-
-			  fullWidth: true,
-
-			  height: '250px',
-
-			  chartPadding: {
-
-			    right: 40
-
-			  }
-
-			});
-
-		});
+		<?php require "query/homequeryjs.php" ?>
 
 	</script>
 

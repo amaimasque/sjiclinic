@@ -1,4 +1,6 @@
 <?php
+	
+	date_default_timezone_set("Asia/Manila");
 
 	$host_name = "localhost";
 
@@ -7,13 +9,6 @@
 	$password = "";
 
 	$db_name = "db_sji";
-
-	/*$username = "id10765695_root";
-
-	$password = "12345";
-
-	$db_name = "id10765695_db_sji";*/
-
 
 
 	$con = mysqli_connect($host_name, $username, $password, $db_name);

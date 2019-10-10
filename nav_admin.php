@@ -151,7 +151,7 @@
 
 				<a href="history.php?viewby=client" class="w3-button w3-text-white w3-bar-item" id="history"><i class="demo-icon icon-history"></i> Patients  History</a>
 
-				<a href="#" class="w3-button w3-text-white w3-bar-item" id="report"><i class="demo-icon icon-stat"></i> Report</a>
+				<a href="report.php" class="w3-button w3-text-white w3-bar-item" id="report"><i class="demo-icon icon-stat"></i> Report</a>
 
 				<div class="w3-dropdown-hover w3-right">
 
@@ -187,7 +187,7 @@
 
 			<a class="w3-button w3-animate-top w3-block" href="history.php?viewby=client">Patients History</a>
 
-			<a class="w3-button w3-animate-top w3-block" href="#">Reports</a>
+			<a class="w3-button w3-animate-top w3-block" href="report.php">Reports</a>
 
 			<button class="w3-button w3-animate-top w3-block" onclick="viewProfile()">Profile Settings</button>
 
